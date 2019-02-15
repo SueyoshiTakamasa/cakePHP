@@ -7,6 +7,19 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
+    //
+    //アソシエーション
+    //
+    public $hasMany = array(
+        'Post'=>array(
+            'className'=>'Post',
+            'foreignKey'=>'user_id',
+        ),
+    );
+
+    //
+    //バリデーション
+    //
     public $validate = array(
         'username' => array(
             'required' => array(

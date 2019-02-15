@@ -1,6 +1,10 @@
 <?php 
 class Post extends AppModel {
-public $validate = array(
+
+    //
+    //バリデーション
+    //
+    public $validate = array(
         'title' => array(
             'rule' => 'notBlank',
             'message' => '正しい値を入れてください'
@@ -10,9 +14,23 @@ public $validate = array(
         )
     );
 
-public function isOwnedBy($post, $user) {
-    return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
-}
+    //
+    //アソシエーション
+    //
+    public $belongsTo = array(
+		'Category'=>array(
+			'className'=>'Category',
+			'foreignKey'=>'category_id'
+		),
+		'User'=>array(
+			'className'=>'User',
+			'foreignKey'=>'user_id',
+		),
+	);
+
+    public function isOwnedBy($post, $user) {
+        return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
+    }
 
 
 }

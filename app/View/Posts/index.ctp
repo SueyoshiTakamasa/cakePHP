@@ -6,6 +6,7 @@
     <tr>
         <th>Id</th>
         <th>Title</th>
+        <th>category</th>
         <th>Actions</th>
         <th>Created</th>
     </tr>
@@ -22,6 +23,9 @@
                     array('action' => 'view', $post['Post']['id'])
                 );
             ?>
+        </td>
+        <td>
+            <?php echo h($post['Category']['name']); ?>
         </td>
         <td>
             <?php
