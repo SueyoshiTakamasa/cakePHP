@@ -1,5 +1,5 @@
 <?php
-//App::uses('AppController', 'Controller');
+App::uses('AppController', 'Controller');
 
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Flash');
@@ -31,12 +31,12 @@ class PostsController extends AppController {
     //
     public function add() {
         if ($this->request->is('post')) {
-            $this->Post->create();
-            if ($this->Post->save($this->request->data)) {
+            //Added this line
+            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
+            if ($this->Post->save($this->request->data)){
                 $this->Flash->success(__('Your post has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
-            $this->Flash->error(__('Unable to add your post.'));
         }
     }
 
@@ -93,10 +93,8 @@ class PostsController extends AppController {
     //
     //権限に関して
     //
-    /*
+
     public function isAuthorized($user) {
-    	debug($this->action);
-    	exit;
         // 登録済ユーザーは投稿できる
         if ($this->action === 'add') {
             return true;
@@ -112,7 +110,7 @@ class PostsController extends AppController {
     
         return parent::isAuthorized($user);
     }
-    */
+    
 
 
 

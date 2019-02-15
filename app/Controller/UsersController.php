@@ -5,25 +5,24 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
     public function beforeFilter() {
-    parent::beforeFilter();
-    // ユーザー自身による登録とログアウトを許可する
-  //  $this->Auth->allow('add', 'logout');
-}
-
-public function login() {
-    if ($this->request->is('post')) {
-        // if ($this->Auth->login()) {
-        //     $this->redirect($this->Auth->redirect());
-        // } else {
-        //     $this->Flash->error(__('Invalid username or password, try again'));
-        // }
+        parent::beforeFilter();
+        // ユーザー自身による登録とログアウトを許可する
+        $this->Auth->allow('add', 'logout');
     }
-    $this->autoLayout = false;
-}
-
-public function logout() {
-    // $this->redirect($this->Auth->logout());
-}
+    
+    public function login() {
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                $this->redirect($this->Auth->redirect());
+            } else {
+                $this->Flash->error(__('Invalid username     or password, try again'));
+            }
+        }
+    }
+    
+    public function logout() {
+        $this->redirect($this->Auth->logout());
+    }
 
     public function index() {
         $this->User->recursive = 0;
@@ -49,7 +48,6 @@ public function logout() {
                 __('The user could not be saved. Please, try again.')
             );
         }
-        $this->autoLayout = false;
     }
 
     public function edit($id = null) {
