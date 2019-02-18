@@ -6,17 +6,24 @@
 	<h2><?php echo __('Categories'); ?></h2>
 
 	<!-- ここから | カテゴリー一覧を表示-->
-	<?php foreach ($categories as $category): ?>
-	<tr>
-		<td><?php echo h($category['Category']['id']); ?>&nbsp;</td>
-		<td><?php echo h($category['Category']['name']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $category['Category']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category['Category']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category['Category']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $category['Category']['id']))); ?>
-		</td>
-	</tr>
-    <?php endforeach; ?>
+	<table>
+		<tr>
+        <th>Id</th>
+        <th>category</th>
+        <th>Actions</th>
+        </tr>
+		<?php foreach ($categories as $category): ?>
+			<tr>
+				<td><?php echo h($category['Category']['id']); ?>&nbsp;</td>
+				<td><?php echo h($category['Category']['name']); ?>&nbsp;</td>
+				<td class="actions">
+					<?php echo $this->Html->link(__('View'), array('action' => 'view', $category['Category']['id'])); ?>
+					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category['Category']['id'])); ?>
+					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category['Category']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $category['Category']['id']))); ?>
+				</td>
+			</tr>
+	    <?php endforeach; ?>
+    </table>
     <!-- ここまで | カテゴリー一覧を表示-->
 
     <!-- ここから | カテゴリーを追加-->

@@ -30,6 +30,7 @@ class PostsController extends AppController {
     //記事を追加する
     //
     public function add() {
+
         if ($this->request->is('post')) {
             //Added this line
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
@@ -38,6 +39,12 @@ class PostsController extends AppController {
                 return $this->redirect(array('action' => 'index'));
             }
         }
+
+        //categoriesテーブルから種別テーブルリストを取得する
+        $this->set('list',$this->Post->Category->find('list',array('fields'=>array('id','name'))));
+
+        //tagsテーブルからリストを取得する
+        $this->set('tag',$this->Post->Tag->find('list')); 
     }
 
 
@@ -45,6 +52,7 @@ class PostsController extends AppController {
     //投稿記事の編集
     //
     public function edit($id = null) {
+        $this->set('user',$this->Post->User->find('list'));
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
@@ -56,6 +64,10 @@ class PostsController extends AppController {
     
         if ($this->request->is(array('post', 'put'))) {
             $this->Post->id = $id;
+            // if(isset($this->request->data['Tag'])){
+            //     $this->trimTaged();
+            //     debug($this->trimTaged());
+            // }
             if ($this->Post->save($this->request->data)) {
                 $this->Flash->success(__('Your post has been updated.'));
                 return $this->redirect(array('action' => 'index'));
@@ -66,6 +78,9 @@ class PostsController extends AppController {
         if (!$this->request->data) {
             $this->request->data = $post;
         }
+
+        $this->set('list',$this->Post->Category->find('list'));
+        $this->set('tag',$this->Post->Tag->find('list')); 
 
     }
     

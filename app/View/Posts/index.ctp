@@ -7,6 +7,7 @@
         <th>Id</th>
         <th>Title</th>
         <th>category</th>
+        <th>tag</th>
         <th>Actions</th>
         <th>Created</th>
     </tr>
@@ -26,6 +27,13 @@
         </td>
         <td>
             <?php echo h($post['Category']['name']); ?>
+        </td>
+        <td>
+            <?php foreach ($post['Tag'] as $tag): ?>
+                <span class=tag--original>
+                    <?php echo h($tag['name']."\n"); ?>
+                </span>
+            <?php endforeach; ?>
         </td>
         <td>
             <?php

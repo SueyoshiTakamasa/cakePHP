@@ -28,6 +28,17 @@ class Post extends AppModel {
 		),
 	);
 
+    public $hasAndBelongsToMany = array(
+        'Tag'=>array(
+            'className'=>'Tag',
+            'joinTable'=>'posts_tags',
+            'foreignKey'=>'post_id',
+            'associationForeignKey'=>'tag_id',
+            'unique'=>true,
+            'with'=>'PostsTag',
+        ),
+    );
+
     public function isOwnedBy($post, $user) {
         return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
     }
