@@ -23,14 +23,14 @@ class User extends AppModel {
     public $validate = array(
         'username' => array(
             'required' => array(
-                'rule' => 'notBlank',
-                'message' => 'A username is required'
+                'rule' => 'isUnique',
+                'message' => 'その名前はすでに使われています。'
             )
         ),
         'password' => array(
             'required' => array(
-                'rule' => 'notBlank',
-                'message' => 'A password is required'
+                'rule' => array('lengthBetween', 5, 15),
+                'message' => '文字数が少なすぎます。'
             )
         ),
         'role' => array(
@@ -41,7 +41,8 @@ class User extends AppModel {
             )
         )
     );
-
+    
+    //パスワードをハッシュ化
     public function beforeSave($options = array()) {
     if (isset($this->data[$this->alias]['password'])) {
         $passwordHasher = new BlowfishPasswordHasher();

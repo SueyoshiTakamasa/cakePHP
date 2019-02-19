@@ -6,8 +6,14 @@ class Post extends AppModel {
     //
     public $validate = array(
         'title' => array(
-            'rule' => 'notBlank',
-            'message' => '正しい値を入れてください'
+            'isOriginal' => array(
+                'rule' => 'isOriginal',
+                'message' => 'すでに同じタイトルがあります'
+            ),
+            'notBlank' => array(
+                'rule' => 'notBlank',
+                'message' => 'タイトルを入力してください'
+            )
         ),
         'body' => array(
             'rule' => 'notBlank'
@@ -43,8 +49,29 @@ class Post extends AppModel {
         return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
     }
 
+    public function isOriginal($fields) {
 
+        //記事追加する時
+        if(empty($this->data['Post']['id'])){
+            return !$this->find('count', array(
+            'conditions' => array(
+                'Post.title'   => $this->data['Post']['title'],
+                'Post.user_id' => $this->data['Post']['user_id']
+            ),
+            'recursive' => -1)
+            );
+        } else{
+        //記事編集する時。扱っている記事のidを除外してデータベースから情報を引っ張ってくる
+            return !$this->find('count', array(
+            'conditions' => array(
+                'Post.title'   => $this->data['Post']['title'],
+                'Post.user_id' => $this->data['Post']['user_id']
+            ),
+            'recursive' => -1)
+            );
+        }
+
+    }
 
 
 }
- ?>
