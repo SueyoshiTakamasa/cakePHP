@@ -52,7 +52,7 @@ class PostsController extends AppController {
     //投稿記事の編集
     //
     public function edit($id = null) {
-        $this->set('user',$this->Post->User->find('list'));
+
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
