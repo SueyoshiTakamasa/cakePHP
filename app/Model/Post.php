@@ -49,8 +49,11 @@ class Post extends AppModel {
         return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
     }
 
-    public function isOriginal($fields) {
 
+    //
+    //バリデーション：ユーザー毎に同じタイトルの記事を複数作成できないようにする
+    //
+    public function isOriginal() {
         //記事追加する時
         if(empty($this->data['Post']['id'])){
             return !$this->find('count', array(
