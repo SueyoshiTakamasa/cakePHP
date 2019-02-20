@@ -6,7 +6,7 @@ CREATE TABLE posts_tags (
     post_id INT(11),
     tag_id  INT(11),
     created datetime default null,
-	modified datetime default null
+    modified datetime default null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 --あらかじめ一部値を挿入
