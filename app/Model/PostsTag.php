@@ -4,18 +4,18 @@ App::uses('AppModel','Model');
 class PostsTag extends AppModel{
 	public $belongsTo = array(
 		'Post' =>array(
-			'className' => 'Post',
+			'className'  => 'Post',
 			'foreignKey' => 'post_id',
 			'conditions' => '',
-			'fields' => '',
-			'order' => '',
+			'fields'     => '',
+			'order'      => '',
 		),
 		'Tag' =>array(
-			'className' => 'Tag',
+			'className'  => 'Tag',
 			'foreignKey' => 'tag_id',
 			'conditions' => '',
-			'fields' => '',
-			'order' => '',
+			'fields'     => '',
+			'order'      => '',
 		),
 	);
 }

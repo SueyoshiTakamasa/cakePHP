@@ -23,6 +23,14 @@ class Post extends AppModel {
     //
     //アソシエーション
     //
+    public $hasMany = array(
+        'Attachment'=>array(
+            'className'=>'Attachment',
+            'foreignKey'=>'post_id',
+            'dependent'=>true,
+        )
+    );
+    
     public $belongsTo = array(
 		'Category'=>array(
 			'className'=>'Category',
@@ -54,26 +62,35 @@ class Post extends AppModel {
     //バリデーション：ユーザー毎に同じタイトルの記事を複数作成できないようにする
     //
     public function isOriginal() {
+        $postid     = Hash::get($this->data, 'Post.id');
+        $posttitle  = Hash::get($this->data, 'Post.title');
+        $userid     = Hash::get($this->data, 'Post.user_id');
+        $conditions = [
+            'Post.title'   => $posttitle,
+            'Post.user_id' => $userid
+        ];
+        $not_postid  = [
+            'NOT'          => [
+                'Post.id'      => $postid
+            ]
+        ];
+
         //記事追加する時
-        if(empty($this->data['Post']['id'])){
+        if($postid == null){
             return !$this->find('count', array(
-                'conditions' => array(
-                    'Post.title'   => $this->data['Post']['title'],
-                    'Post.user_id' => $this->data['Post']['user_id']
-                ),
+                'conditions' => $conditions,
                 'recursive' => -1)
             );
         } else{
         //記事編集する時。扱っている記事のidを除外してデータベースから情報を引っ張ってくる
             return !$this->find('count', array(
-                'conditions' => array(
-                    'Post.title'   => $this->data['Post']['title'],
-                    'Post.user_id' => $this->data['Post']['user_id']
-                ),
+                'conditions' => [
+                    $not_postid,
+                    $conditions
+                ],
                 'recursive' => -1)
             );
         }
-
     }
 
 

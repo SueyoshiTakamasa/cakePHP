@@ -1,0 +1,3 @@
+[submodule "app/Plugin/Upload"]
+	path = app/Plugin/Upload
+	url = ./

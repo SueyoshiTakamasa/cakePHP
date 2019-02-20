@@ -24,7 +24,10 @@ class PostsController extends AppController {
         if (!$post) {
             throw new NotFoundException(__('Invalid post'));
         }
-        $this->set('post', $post);    }
+        $this->set('post',$post);
+        $imgSrcPrefix = '..'.DS.'..'.DS.'files'.DS.'attachment'.DS.'photo'.DS;
+        $this->set('imgSrcPrefix',$imgSrcPrefix);
+    }
 
     //
     //記事を追加する
@@ -34,7 +37,7 @@ class PostsController extends AppController {
         if ($this->request->is('post')) {
             //Added this line
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
-            if ($this->Post->save($this->request->data)){
+            if ($this->Post->saveall($this->request->data)){
                 $this->Flash->success(__('Your post has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -63,11 +66,8 @@ class PostsController extends AppController {
         }
     
         if ($this->request->is(array('post', 'put'))) {
+            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
             $this->Post->id = $id;
-            // if(isset($this->request->data['Tag'])){
-            //     $this->trimTaged();
-            //     debug($this->trimTaged());
-            // }
             if ($this->Post->save($this->request->data)) {
                 $this->Flash->success(__('Your post has been updated.'));
                 return $this->redirect(array('action' => 'index'));
@@ -78,7 +78,6 @@ class PostsController extends AppController {
         if (!$this->request->data) {
             $this->request->data = $post;
         }
-
         $this->set('list',$this->Post->Category->find('list'));
         $this->set('tag',$this->Post->Tag->find('list')); 
 

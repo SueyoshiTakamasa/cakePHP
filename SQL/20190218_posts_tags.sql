@@ -30,3 +30,15 @@ VALUES
 	3,
 	now()
 );
+
+
+--画像をアップロードできるようにカラムの追加
+ALTER TABLE
+posts 
+ADD
+`photo` varchar(255) DEFAULT NULL;
+ALTER TABLE
+posts 
+ADD
+`photo_dir` varchar(255) DEFAULT NULL;
+

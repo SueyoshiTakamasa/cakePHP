@@ -39,8 +39,14 @@
             <?php
                 echo $this->Form->postLink(
                     'Delete',
-                    array('action' => 'delete', $post['Post']['id']),
-                    array('confirm' => 'Are you sure?')
+                    array(
+                        'controller' => 'posts',
+                        'action'     => 'delete',
+                         $post['Post']['id']
+                     ),
+                    array(
+                        'confirm'    => 'Are you sure?'
+                    )
                 );
             ?>
             <?php

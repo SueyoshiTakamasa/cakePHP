@@ -114,3 +114,8 @@ CakeLog::config('error', array(
 debugを設定
 *************************/
 CakePlugin::load('DebugKit');
+
+/*************************
+ファイルアップロード用プラグイン
+*************************/
+CakePlugin::load('Upload');
