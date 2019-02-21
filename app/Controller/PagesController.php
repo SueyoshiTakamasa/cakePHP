@@ -77,4 +77,14 @@ class PagesController extends AppController {
 			throw new NotFoundException();
 		}
 	}
+
+	public function image() {
+	   $filepath = Router::url();
+       $len = strlen($filepath);
+       $filepath = substr($filepath, 6, $len);
+       $this->layout = false;
+       $this->render(false);
+       debug($filepath);
+       exit;
+	}
 }

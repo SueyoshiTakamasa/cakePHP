@@ -25,7 +25,7 @@ class PostsController extends AppController {
             throw new NotFoundException(__('Invalid post'));
         }
         $this->set('post',$post);
-        $imgSrcPrefix = '..'.DS.'..'.DS.'files'.DS.'attachment'.DS.'photo'.DS;
+        $imgSrcPrefix = '..'.DS.'..'.DS.'..'.DS.'Files'.DS.'attachment'.DS.'photo'.DS;
         $this->set('imgSrcPrefix',$imgSrcPrefix);
     }
 

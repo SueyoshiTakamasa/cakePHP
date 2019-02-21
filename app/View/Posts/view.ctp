@@ -12,7 +12,11 @@
 		for($i = 0; $i < count($attachment); $i++){
 			if($i % 6 == 0){echo '<div class="row">';}
 			echo '<div>';
-			echo $this->Html->image($imgSrcPrefix.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],array(
+			// echo $this->Html->image($imgSrcPrefix.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],array(
+			// 	'id'=>'thumbnail'.$i,
+			// 	'width'=>'256',
+			// ));
+			echo $this->Html->image('/images/get/'.$attachment[$i]['photo'],array(
 				'id'=>'thumbnail'.$i,
 				'width'=>'256',
 			));
