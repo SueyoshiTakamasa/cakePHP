@@ -5,25 +5,24 @@
 
 <p><small>Created: <?php echo $post['Post']['created']; ?></small></p>
 
-<?php 
+<div style="display:flex;">
+	<?php 
 
 	  $attachment = $post['Attachment']; /*画像データが一枚ずつ格納された配列*/
 
 		for($i = 0; $i < count($attachment); $i++){
 			if($i % 6 == 0){echo '<div class="row">';}
-			echo '<div>';
-			// echo $this->Html->image($imgSrcPrefix.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],array(
-			// 	'id'=>'thumbnail'.$i,
-			// 	'width'=>'256',
-			// ));
-			echo $this->Html->image('/images/get/'.$attachment[$i]['photo'],array(
+
+			echo $this->Html->image('/images/get/'.'attachment/photo/'.$post['Attachment'][$i]['photo_dir'].DS.$post['Attachment'][$i]['photo'],array(
 				'id'=>'thumbnail'.$i,
-				'width'=>'256',
+				'width'=>'400',
 			));
-			echo '</div>';
+
 			if($i % 6 == 5 || $i+1 >= count($attachment)){echo '</div>';}
 		}
-		
-?>
+
+	?>
+</div>
+
 
 <p><?php echo h($post['Post']['body']); ?></p>
