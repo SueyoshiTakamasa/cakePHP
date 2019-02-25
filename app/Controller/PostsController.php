@@ -36,6 +36,7 @@ class PostsController extends AppController {
             //Added this line
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
             if ($this->Post->saveall($this->request->data)){
+
                 $this->Flash->success(__('Your post has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -63,38 +64,54 @@ class PostsController extends AppController {
             throw new NotFoundException(__('Invalid post'));
         }
 
-
         if ($this->request->is(array('post', 'put'))) {
-            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
+            //トランザクション管理用モデルを呼び出し
+            $this->loadModel('TransactionManager');
+            //トランザクション開始
+            $transaction = $this->TransactionManager->begin();
 
-            $this->Post->id = $id;
+            try{
+                $this->request->data['Post']['user_id'] = $this->Auth->user('id');
+                $this->Post->id = $id;
 
-            $this->request->data['Attachment'] = $post['Attachment'];
+                //削除欄にチェックがあれば削除処理
+                if(isset($this->request->data['Post']['Attachment'])){
+                    $this->Post->Attachment->delete(
+                        $this->request->data['Post']['Attachment']
+                    );
+                }
 
-            debug($this->request->data['Attachment']);
-            exit;
+                //全ての情報をセーブ
+                $this->Post->saveall($this->request->data);
 
-            //削除ボタンが押されたら
-            if(isset($this->request->data['file_delete'])){
-
-
+                //モデルの処理がすべて上手くいったらコミット
+                $this->TransactionManager->commit($transaction);
+            }catch(Exception $e){
+                //失敗したらロールバック
+                $this->TransactionManager->rollback($transaction);
             }
 
             if ($this->Post->saveall($this->request->data)) {
-                $this->Flash->success(__('Your post has been updated.'));
-                return $this->redirect(array('action' => 'index'));
+                 $this->Flash->success(__('Your post has been updated.'));
+                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Flash->error(__('Unable to update your post.'));
+                 $this->Flash->error(__('Unable to update your post.'));
             }
-
         }
-
         if (!$this->request->data) {
             $this->request->data = $post;
         }
+
         $this->set('list',$this->Post->Category->find('list'));
         $this->set('tag',$this->Post->Tag->find('list'));
         $this->set('attachment', $post['Attachment']);
+        $this->set('photo' , $this->Post->Attachment->find('list', array(
+            'conditions' => array(
+                'Attachment.post_id' => $this->request->data['Post']['id'],
+                'deleted'            => 0
+            )
+        )));
+
     }
 
    //

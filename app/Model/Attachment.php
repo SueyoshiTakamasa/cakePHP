@@ -3,6 +3,7 @@ App::uses('AppModel','Model');
 
 class Attachment extends AppModel{
 	public $actsAs = array(
+		'SoftDelete',
 		'Upload.Upload'=>array(
 			'photo'=>array(
 				'fields'=>array(
