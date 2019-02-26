@@ -3,7 +3,6 @@ App::uses('AppModel','Model');
 
 class Attachment extends AppModel{
 	public $actsAs = array(
-		'SoftDelete',
 		'Upload.Upload'=>array(
 			'photo'=>array(
 				'fields'=>array(
@@ -22,7 +21,8 @@ class Attachment extends AppModel{
 	public $belongsTo = array(
 		'Post'=>array(
 			'className'=>'Post',
-			'foreignKey'=>'post_id'
+			'foreignKey'=>'post_id',
 		)
 	);
+
 }

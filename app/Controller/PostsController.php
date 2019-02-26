@@ -9,7 +9,9 @@ class PostsController extends AppController {
     //初期画面
     //
     public function index() {
-        $this->set('posts', $this->Post->find('all'));
+        $this->set('posts', $this->Post->find('all' , array(
+            'conditions' => array('Post.deleted' => false)
+        )));
     }
 
     //
@@ -64,21 +66,56 @@ class PostsController extends AppController {
             throw new NotFoundException(__('Invalid post'));
         }
 
-        if ($this->request->is(array('post', 'put'))) {
+        if (empty($this->request->data)) {
+            $this->request->data = $post;
+        } elseif($this->request->is(array('post', 'put'))) {
+            // ここに保存のためのロジックを置く
+
+            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
+            $this->Post->id = $id;
             //トランザクション管理用モデルを呼び出し
             $this->loadModel('TransactionManager');
             //トランザクション開始
             $transaction = $this->TransactionManager->begin();
 
             try{
-                $this->request->data['Post']['user_id'] = $this->Auth->user('id');
-                $this->Post->id = $id;
+                //バリデーション
+                $this->Post->set($this->request->data);
+                if(
+                    $this->Post->validates(array(
+                        'title' => array(
+                            'isOriginal' => array(
+                                'rule' => 'isOriginal',
+                                'message' => 'すでに同じタイトルがあります'
+                            ),
+                            'notBlank' => array(
+                                'rule' => 'notBlank',
+                                'message' => 'タイトルを入力してください'
+                            )
+                        ),
+                        'body' => array(
+                            'rule' => 'notBlank'
+                        )
+                    ))
+                ){
+                    debug('OK');
+                    exit;
+                } else{
+                    debug('NG');
+                    exit;
+                }
 
                 //削除欄にチェックがあれば削除処理
-                if(isset($this->request->data['Post']['Attachment'])){
-                    $this->Post->Attachment->delete(
-                        $this->request->data['Post']['Attachment']
-                    );
+                if(!empty($this->request->data['Post']['Attachment'])){
+
+                    //IDを配列に格納
+                    $array = $this->request->data['Post']['Attachment'];
+
+                    //格納されたIDを一つずつdeleteメソッドに引数として渡す
+                    foreach($array as $id){
+                        $this->Post->Attachment->delete($id);
+                    }
+
                 }
 
                 //全ての情報をセーブ
@@ -86,21 +123,21 @@ class PostsController extends AppController {
 
                 //モデルの処理がすべて上手くいったらコミット
                 $this->TransactionManager->commit($transaction);
+
+                //コミットまで終わったらフラッシュで編集の成功を知らせる
+                $this->Flash->success(__('Your post has been updated.'));
+                //indexへリダイレクト
+                return $this->redirect(array('action' => 'index'));
+
             }catch(Exception $e){
                 //失敗したらロールバック
                 $this->TransactionManager->rollback($transaction);
+                //フラッシュで知らせる
+                $this->Flash->error(__('Unable to update your post.'));
             }
 
-            if ($this->Post->saveall($this->request->data)) {
-                 $this->Flash->success(__('Your post has been updated.'));
-                 return $this->redirect(array('action' => 'index'));
-            } else {
-                 $this->Flash->error(__('Unable to update your post.'));
-            }
         }
-        if (!$this->request->data) {
-            $this->request->data = $post;
-        }
+
 
         $this->set('list',$this->Post->Category->find('list'));
         $this->set('tag',$this->Post->Tag->find('list'));

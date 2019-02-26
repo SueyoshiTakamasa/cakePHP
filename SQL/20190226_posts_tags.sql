@@ -3,10 +3,11 @@ postsとtagsの中間テーブル
 ******************************/
 --テーブル作成
 CREATE TABLE posts_tags (
-    post_id INT(11),
-    tag_id  INT(11),
-    created datetime default null,
-    modified datetime default null
+	id                int not null auto_increment primary key,
+    post_id           int(11),
+    tag_id            int(11),
+    created           datetime default null,
+    modified          datetime default null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 --あらかじめ一部値を挿入
@@ -30,15 +31,4 @@ VALUES
 	3,
 	now()
 );
-
-
---画像をアップロードできるようにカラムの追加
-ALTER TABLE
-posts 
-ADD
-`photo` varchar(255) DEFAULT NULL;
-ALTER TABLE
-posts 
-ADD
-`photo_dir` varchar(255) DEFAULT NULL;
 

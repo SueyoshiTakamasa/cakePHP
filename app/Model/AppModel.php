@@ -30,19 +30,41 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
-	public function exists($id = null) {
-	if ($this->Behaviors->attached('SoftDelete')) {
-	return $this->existsAndNotDeleted($id);
-	} else {
-	return parent::exists($id);
-	}
-	}
 
-	public function delete($id = null, $cascade = true) {
-	$result = parent::delete($id, $cascade);
-	if ($result === false && $this->Behaviors->enabled('SoftDelete')) {
-	return (bool)$this->field('deleted', array('deleted' => 1));
+	//
+	//’deleted’がコラムにあれば論理削除
+	//
+
+	//削除キーの定義
+	public $deleted_name='deleted';
+	public $deleted_date='deleted_date';
+
+	function delete($id=null,$cascade=true){
+	        if($this->_isDeletedField()){
+	            if(empty($id)){$id=$this->id;}
+	            $conditions=array();
+	            $conditions['conditions']['AND'][$this->alias.'.'.$this->primaryKey] = $id;
+	            $conditions['fields']=array($this->primaryKey,$this->deleted_name);
+	            $conditions['recursive']=-1;
+	            $data = $this->find('first',$conditions);
+	            if(!empty($data)){
+	                $data[$this->alias][$this->deleted_name]=1;
+	                $data[$this->alias][$this->deleted_date]=date('Y-m-d H:i:s');
+
+	                //hasOne,hasManyで繋がっていて、dependentがtrueの場合、その関連テーブルの関連データにdeleteメソッドを行う
+	                $this->_deleteDependent($id, $cascade);
+	                //hasAndBelongsToManyで繋がっている場合、その中間テーブルの関連データにdeleteメソッドを行う
+	                $this->_deleteLinks($id);
+
+	                return $this->save($data);
+	            }else{
+	                return false;
+	            }
+	        }else{
+	            return parent::delete($id,$cascade);
+	        }
 	}
-	return $result;
-	}
+	//「削除キー」の有無確認
+	function _isDeletedField(){return isset($this->_schema[$this->deleted_name]);}
+
 }

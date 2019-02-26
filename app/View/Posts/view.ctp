@@ -10,16 +10,16 @@
 
 	  $attachment = $post['Attachment']; /*画像データが一枚ずつ格納された配列*/
 
+		echo '<div class="row">';
 		for($i = 0; $i < count($attachment); $i++){
-			if($i % 6 == 0){echo '<div class="row">';}
-
-			echo $this->Html->image('/images/get/'.'attachment/photo/'.$post['Attachment'][$i]['photo_dir'].DS.$post['Attachment'][$i]['photo'],array(
-				'id'=>'thumbnail'.$i,
+			if(!$attachment[$i]['deleted'] && !empty($attachment[$i]['photo'])){
+				echo $this->Html->image('/images/get/'.'attachment/photo/'.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],array(
+				'id'=>'thumbnail'.$attachment[$i]['photo_dir'],
 				'width'=>'400',
-			));
-
-			if($i % 6 == 5 || $i+1 >= count($attachment)){echo '</div>';}
+			    ));
+			}
 		}
+		echo '</div>';
 
 	?>
 </div>

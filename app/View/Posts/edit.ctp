@@ -4,7 +4,6 @@
 <?php
 	echo $this->Form->create('Post',array(
 		'type' => 'file',
-		'onsubmit'=>'return confirm("これでウインドウがでますよ？")'
 	));
 	echo $this->Form->input('title');
 	echo $this->Form->input('category_id',array(
@@ -23,21 +22,21 @@
 		'type'     =>'select',
 		'options'  =>$photo,
 		'multiple' => 'checkbox',
+		'label'    => '削除する画像をチェックする',
 		'size'     => 5,
 		'class'    =>'checkbox'));
 
+	echo '<div class="row">';
 		for($i = 0; $i < count($attachment); $i++){
-			if($i % 6 == 0){echo '<div class="row">';}
-			if(!$attachment[$i]['deleted']){
+			if(!$attachment[$i]['deleted'] && !empty($attachment[$i]['photo'])){
 				echo $this->Html->image('/images/get/'.'attachment/photo/'.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],array(
 				'id'=>'thumbnail'.$attachment[$i]['photo_dir'],
 				'width'=>'400',
 			    ));
 			}
-
-
-			if($i % 6 == 5 || $i+1 >= count($attachment)){echo '</div>';}
 		}
+	echo '</div>';
+
 	echo $this->Form->input('body', array('rows' => '3'));
 	echo $this->Form->input('id', array('type' => 'hidden'));
 	echo $this->Form->end('Save Post');

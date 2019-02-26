@@ -1,6 +1,7 @@
 <?php 
 class Post extends AppModel {
 
+
     //
     //バリデーション
     //
@@ -25,31 +26,31 @@ class Post extends AppModel {
     //
     public $hasMany = array(
         'Attachment'=>array(
-            'className'=>'Attachment',
-            'foreignKey'=>'post_id',
-            'dependent'=>true,
+            'className'             =>'Attachment',
+            'foreignKey'            =>'post_id',
+            'dependent'             => true
         )
     );
     
     public $belongsTo = array(
 		'Category'=>array(
-			'className'=>'Category',
-			'foreignKey'=>'category_id'
+			'className'             =>'Category',
+			'foreignKey'            =>'category_id'
 		),
 		'User'=>array(
-			'className'=>'User',
-			'foreignKey'=>'user_id',
+			'className'             =>'User',
+			'foreignKey'            =>'user_id',
 		),
 	);
 
     public $hasAndBelongsToMany = array(
         'Tag'=>array(
-            'className'=>'Tag',
-            'joinTable'=>'posts_tags',
-            'foreignKey'=>'post_id',
-            'associationForeignKey'=>'tag_id',
-            'unique'=>true,
-            'with'=>'PostsTag',
+            'className'             =>'Tag',
+            'joinTable'             =>'posts_tags',
+            'foreignKey'            =>'post_id',
+            'associationForeignKey' =>'tag_id',
+            'unique'                =>true,
+            'with'                  =>'PostsTag',
         ),
     );
 
@@ -92,6 +93,7 @@ class Post extends AppModel {
             );
         }
     }
+
 
 
 }
