@@ -1,6 +1,11 @@
 <?php 
 class Post extends AppModel {
 
+    //
+    //モデルの使用
+    //
+    public $actsAs = array('Search.Searchable');
+
 
     //
     //バリデーション
@@ -93,6 +98,27 @@ class Post extends AppModel {
             );
         }
     }
+
+    //
+    //検索条件設定
+    //
+    public $filterArgs = array(
+        'title'=>array(
+            'type'=>'like',
+            'field'=>'Post.title',
+            'allowEmpty'=>true,
+        ),
+        'category'=>array(
+            'type'=>'like',
+            'field'=>'Post.category_id',
+            'allowEmpty'=>true,
+        ),
+        'tag'=>array(
+            'type'=>'subquery',
+            'field'=>'Post.id',
+            'method'=>'tagSearch',
+        )
+    );
 
 
 

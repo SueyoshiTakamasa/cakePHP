@@ -14,7 +14,7 @@ echo $this->Form->input('Tag',array(
 		'options'=>$tag,
 		'multiple' => 'checkbox',
 		'size' => 5,
-		'class'=>'checkbox'));
+		'class'=>'check--original'));
 echo $this->Form->input('Attachment.0.photo', array('type' => 'file'));
 echo $this->Form->input('Attachment.1.photo', array('type' => 'file'));
 echo $this->Form->input('Attachment.2.photo', array('type' => 'file'));

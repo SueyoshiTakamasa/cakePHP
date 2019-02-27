@@ -14,7 +14,7 @@
 		'options'  =>$tag,
 		'multiple' => 'checkbox',
 		'size'     => 5,
-		'class'    =>'checkbox'));
+		'class'    =>'check--original'));
 
 	echo $this->Form->input('Attachment.0.photo', array('type' => 'file'));
 
@@ -24,7 +24,7 @@
 		'multiple' => 'checkbox',
 		'label'    => '削除する画像をチェックする',
 		'size'     => 5,
-		'class'    =>'checkbox'));
+		'class'    =>'check--original'));
 
 	echo '<div class="row">';
 		for($i = 0; $i < count($attachment); $i++){

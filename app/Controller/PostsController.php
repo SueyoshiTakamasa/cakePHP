@@ -3,15 +3,43 @@ App::uses('AppController', 'Controller');
 
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Flash');
-    public $components = array('Flash');
+    public $components = array('Flash','Search.Prg');
+    public $presetVars = true;
+
+    //
+    //
+    //
+    public function beforeFilter() {
+        // ページャ設定
+        $pager_numbers = array(
+          'before' => ' - ',
+          'after'=>' - ',
+          'modulus'=> 10,
+          'separator'=> ' ',
+          'class'=>'pagenumbers'
+        );
+        $this->set('pager_numbers', $pager_numbers);
+      }
 
     //
     //初期画面
     //
     public function index() {
+        $this->Prg->commonProcess();
+        $conditions = $this->Post->parseCriteria($this->passedArgs);
+
         $this->set('posts', $this->Post->find('all' , array(
-            'conditions' => array('Post.deleted' => false)
+            'conditions' => array(
+                'Post.deleted' => false,
+                $conditions
+            )
         )));
+
+        //categoriesテーブルから種別テーブルリストを取得する
+        $this->set('list',$this->Post->Category->find('list',array('fields'=>array('id','name'))));
+
+        //tagsテーブルからリストを取得する
+        $this->set('tag',$this->Post->Tag->find('list'));
     }
 
     //
@@ -167,7 +195,6 @@ class PostsController extends AppController {
     
         return parent::isAuthorized($user);
     }
-    
 
 
 

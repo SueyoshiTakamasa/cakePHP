@@ -30,6 +30,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('tag');
+		echo $this->Html->css('checkbox');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
