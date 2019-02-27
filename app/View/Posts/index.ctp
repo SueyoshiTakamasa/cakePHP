@@ -1,7 +1,38 @@
 <!-- File: /app/View/Posts/index.ctp -->
+<h3>検索する</h3>
+<?php
+    echo $this->Form->create();
+    echo $this->Form->input('タイトル', array(
 
-<h1>Blog posts</h1>
-<p><?php echo $this->Html->link('Add Post', array('action' => 'add')); ?></p>
+            'div' => false
+
+        )
+
+    );
+
+    echo $this->Form->input('カテゴリー', array(
+
+            'div' => false,
+
+        )
+
+    );
+
+    echo $this->Form->input('タグ', array(
+
+            'div' => false,
+
+            'multiple' => 'checkbox',
+
+        )
+
+    );
+
+    echo $this->Form->end('検索する');
+ ?>
+<h3>記事一覧</h3>
+
+<p><?php echo $this->Html->link('記事を追加する', array('action' => 'add')); ?></p>
 <table>
     <tr>
         <th>Id</th>

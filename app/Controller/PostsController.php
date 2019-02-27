@@ -79,32 +79,6 @@ class PostsController extends AppController {
             $transaction = $this->TransactionManager->begin();
 
             try{
-                //バリデーション
-                $this->Post->set($this->request->data);
-                if(
-                    $this->Post->validates(array(
-                        'title' => array(
-                            'isOriginal' => array(
-                                'rule' => 'isOriginal',
-                                'message' => 'すでに同じタイトルがあります'
-                            ),
-                            'notBlank' => array(
-                                'rule' => 'notBlank',
-                                'message' => 'タイトルを入力してください'
-                            )
-                        ),
-                        'body' => array(
-                            'rule' => 'notBlank'
-                        )
-                    ))
-                ){
-                    debug('OK');
-                    exit;
-                } else{
-                    debug('NG');
-                    exit;
-                }
-
                 //削除欄にチェックがあれば削除処理
                 if(!empty($this->request->data['Post']['Attachment'])){
 
@@ -119,15 +93,16 @@ class PostsController extends AppController {
                 }
 
                 //全ての情報をセーブ
-                $this->Post->saveall($this->request->data);
+                if($this->Post->saveall($this->request->data)){
+                    //モデルの処理がすべて上手くいったらコミット
+                    $this->TransactionManager->commit($transaction);
 
-                //モデルの処理がすべて上手くいったらコミット
-                $this->TransactionManager->commit($transaction);
+                    //コミットまで終わったらフラッシュで編集の成功を知らせる
+                    $this->Flash->success(__('Your post has been updated.'));
+                    //indexへリダイレクト
+                    return $this->redirect(array('action' => 'index'));
 
-                //コミットまで終わったらフラッシュで編集の成功を知らせる
-                $this->Flash->success(__('Your post has been updated.'));
-                //indexへリダイレクト
-                return $this->redirect(array('action' => 'index'));
+                }
 
             }catch(Exception $e){
                 //失敗したらロールバック
@@ -137,7 +112,6 @@ class PostsController extends AppController {
             }
 
         }
-
 
         $this->set('list',$this->Post->Category->find('list'));
         $this->set('tag',$this->Post->Tag->find('list'));
@@ -150,6 +124,7 @@ class PostsController extends AppController {
         )));
 
     }
+
 
    //
    //投稿記事の削除
@@ -170,7 +145,7 @@ class PostsController extends AppController {
         }
 
         return $this->redirect(array('action' => 'index'));
-}
+    }
 
     //
     //権限に関して
