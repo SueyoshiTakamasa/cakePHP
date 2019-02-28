@@ -100,11 +100,7 @@ class Post extends AppModel {
     }
 
     public function searchTagId($post = array()){
-            /* 
-            $searchsに条件(tag_id)が入っているので、
-            それを元にPostsTagから取得対象のpost_idを取得し、
-            Postの取得条件としてpost_idを用いた条件を返す。
-            */
+
             $conditions = array();
             if(isset($post['tag'])){
                 $tagIds = count($post['tag']);
