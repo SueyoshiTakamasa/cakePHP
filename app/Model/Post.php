@@ -111,7 +111,7 @@ class Post extends AppModel {
                 // 'contain' => array('Tag')
             ));
             return $query;
-        }
+    }
 
     //
     //検索条件設定
