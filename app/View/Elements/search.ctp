@@ -33,7 +33,7 @@
         echo $this->Form->input('tag',array(
             'type'     =>'select',
             'options'  =>$tag,
-            'multiple' => 'checkbox',
+            'multiple' =>'checkbox',
             'size'     => 5,
             'class'    =>'',
             'label'    =>'',

@@ -4,7 +4,18 @@ App::uses('AppController', 'Controller');
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Flash');
     public $components = array('Flash','Search.Prg');
-    public $presetVars = true;
+    // public $presetVars = true;
+    public $presetVars = array(
+        array(  'field'  => 'title',
+                'type'   => 'value'
+        ),
+        array(  'field'  => 'category',
+                'type'   => 'value'
+        ),
+        array(  'field'  => 'tag',
+                'type'   => 'value'
+        )
+    );
 
     //
     //
@@ -27,7 +38,6 @@ class PostsController extends AppController {
     public function index() {
         $this->Prg->commonProcess();
         $conditions = $this->Post->parseCriteria($this->passedArgs);
-
         $this->set('posts', $this->Post->find('all' , array(
             'conditions' => array(
                 'Post.deleted' => false,
@@ -40,6 +50,7 @@ class PostsController extends AppController {
 
         //tagsテーブルからリストを取得する
         $this->set('tag',$this->Post->Tag->find('list'));
+
     }
 
     //
