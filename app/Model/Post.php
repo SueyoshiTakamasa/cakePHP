@@ -100,35 +100,17 @@ class Post extends AppModel {
     }
 
     public function searchTagId($post = array()){
-            /* 
-            $searchsに条件(tag_id)が入っているので、
-            それを元にPostsTagから取得対象のpost_idを取得し、
-            Postの取得条件としてpost_idを用いた条件を返す。
-            */
-            $conditions = array();
-            if(isset($post['tag'])){
-                $tagIds = count($post['tag']);
-                $posts_tags_conditions = array();
-                foreach($post['tag'] as $search){
-                    $posts_tags_conditions['PostsTag.tag_id'][] = $search;
-                }
 
-                $group = array("PostsTag.post_id having count(PostsTag.tag_id) = " . $tagIds);
-
-                if(!empty($posts_tags_conditions)){
-                    $PostsTagItems = $this->PostsTag->find('all', array('conditions' => $posts_tags_conditions));
-
-                    $PostsTagItems = $this->PostsTag->find('all', array(
-                        'conditions' => $posts_tags_conditions,
-                        'group' => $group,
-                        )
-                    );
-                    foreach($PostsTagItems as $PostsTagItem){
-                        $conditions['or'][] = array('Post.id' => $PostsTagItem['PostsTag']['post_id']);
-                    }
-                }
-            }
-            return $conditions;
+            $this->PostsTag->Behaviors->attach('Containable');
+            $this->PostsTag->Behaviors->attach('Search.Searchable');
+            $query = $this->PostsTag->getQuery('all' , array(
+                'conditions' => array(
+                    'PostsTag.tag_id' => $post['tag']
+                ),
+                'fields' => array('post_id'),
+                // 'contain' => array('Tag')
+            ));
+            return $query;
         }
 
     //
@@ -146,7 +128,7 @@ class Post extends AppModel {
             'allowEmpty'=>true,
         ),
         'tag'=>array(
-            'type'=>'query',
+            'type'=>'subquery',
             'field'=>'Post.id',
             'method'=>'searchTagId',
         )
