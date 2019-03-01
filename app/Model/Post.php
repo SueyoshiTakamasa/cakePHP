@@ -101,16 +101,72 @@ class Post extends AppModel {
 
     public function searchTagId($post = array()){
 
-            $this->PostsTag->Behaviors->attach('Containable');
-            $this->PostsTag->Behaviors->attach('Search.Searchable');
-            $query = $this->PostsTag->getQuery('all' , array(
-                'conditions' => array(
-                    'PostsTag.tag_id' => $post['tag']
-                ),
-                'fields' => array('post_id'),
-                // 'contain' => array('Tag')
-            ));
-            return $query;
+            if(isset($post['tag'])){
+                //選ばれたタグの数で処理を分ける
+                $tagIds = count($post['tag']);
+                if($tagIds == 1) {
+                    $posts = $this->PostsTag->find('all', array(
+                                    'conditions' => array(
+                                        'PostsTag.tag_id' => $post['tag']
+                    )));
+
+                    foreach($posts as $postItem){
+                        $condition['or'][] = array(
+                            'Post.id' => $postItem['PostsTag']['post_id']
+                        );
+                    }
+
+                } elseif($tagIds > 1) {
+
+                    foreach($post['tag'] as $tag_id){
+                        $posts[] = $this->PostsTag->find('all', array(
+                                        'conditions' => array(
+                                            'PostsTag.tag_id' => $tag_id
+                                        )
+                        ));
+                    }
+
+                    debug($posts);
+                    exit;
+
+                    //それぞれの検索結果から同じpost_id値を持つ記事の抽出
+                    $result = array();
+                    foreach($posts[0] as $postItem_a) {
+                        foreach($posts[1] as $postItem_b) {
+                            if($postItem_a['PostsTag']['post_id'] === $postItem_b['PostsTag']['post_id']) {
+                                $result[] = $postItem_b;
+                            }
+                        }
+                    }
+
+
+                    foreach($result as $postItem_c) {
+                        $result[] = $postItem_c;
+                    }
+
+
+                    foreach($result as $postItem) {
+                        $condition['or'][] = array(
+                            'Post.id' => $postItem['PostsTag']['post_id']
+                        );
+                    }
+
+                }
+
+                // $group = array("PostsTag.post_id having count(PostsTag.tag_id) = " . $tagIds);
+                // if(!empty($posts_tags_conditions)){
+                //     $PostsTagItems = $this->PostsTag->find('all', array('conditions' => $posts_tags_conditions));
+                //     $PostsTagItems = $this->PostsTag->find('all', array(
+                //         'conditions' => $posts_tags_conditions,
+                //         'group' => $group,
+                //         )
+                //     );
+                //     foreach($PostsTagItems as $PostsTagItem){
+                //         $conditions['or'][] = array('Post.id' => $PostsTagItem['PostsTag']['post_id']);
+                //     }
+                // }
+            }
+            return $condition;
     }
 
     //
