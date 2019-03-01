@@ -1,16 +1,16 @@
-<!-- File: /app/View/Posts/index.ctp -->
-<?php echo $this->element('search');?> 
-<h3>記事一覧</h3>
+<div class="container">
 
-<p><?php echo $this->Html->link('記事を追加する', array('action' => 'add')); ?></p>
-<table>
-    <tr>
+<?php echo $this->element('search');?>
+<div class="post-list mt-4">
+
+<table class="table bg-white table-bordered">
+    <tr class="bg-light">
         <th>Id</th>
-        <th>Title</th>
-        <th>category</th>
-        <th>tag</th>
-        <th>Actions</th>
-        <th>Created</th>
+        <th>タイトル</th>
+        <th>カテゴリー</th>
+        <th>タグ</th>
+        <th>編集/削除</th>
+        <th>作成日</th>
     </tr>
 
 <!-- ここで $posts 配列をループして、投稿情報を表示 -->
@@ -31,7 +31,7 @@
         </td>
         <td>
             <?php foreach ($post['Tag'] as $tag): ?>
-                <span class=tag--original>
+                <span class="badge badge-danger">
                     <?php echo h($tag['name']."\n"); ?>
                 </span>
             <?php endforeach; ?>
@@ -63,3 +63,7 @@
     <?php endforeach; ?>
 
 </table>
+
+</div>
+
+</div>

@@ -36,6 +36,7 @@ class PostsController extends AppController {
     //初期画面
     //
     public function index() {
+        $this->response->disableCache();
         $this->Prg->commonProcess();
         $conditions = $this->Post->parseCriteria($this->passedArgs);
         $this->set('posts', $this->Post->find('all' , array(

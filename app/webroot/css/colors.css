@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+/*-------------------------------
+文字色
+--------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------
+背景色
+--------------------------------*/
+.bg-fb{
+	background-color: #365899;
+}
+
+.bg-bl--gr{
+	background: #e9ebee;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------
+ボタンカラー
+---------------------------------*/
+.btn-fb{
+	background-color: #4267b2;
+    border-color: #29487d;
+    color: #fff;
+}
+
+.btn-fb--green{
+	background: linear-gradient(#67ae55, #578843);
+	background-color: #69a74e;
+	box-shadow: inset 0 1px 1px #a4e388;
+	border-color: #3b6e22 #3b6e22 #2c5115;
+	color: #fff;
+}
