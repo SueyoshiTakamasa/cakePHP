@@ -120,10 +120,13 @@ class Post extends AppModel {
                         )
                     );
                     foreach($PostsTagItems as $PostsTagItem){
-                        $conditions['or'][] = array('Post.id' => $PostsTagItem['PostsTag']['post_id']);
+                        $post_ids[] = $PostsTagItem['PostsTag']['post_id'];
+                        $conditions = array('Post.id' => $post_ids);
                     }
+
                 }
             }
+
             return $conditions;
         }
 
