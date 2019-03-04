@@ -4,6 +4,7 @@ App::uses('AppController', 'Controller');
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Flash');
     public $components = array('Flash','Search.Prg');
+    public $uses = array('Post','User','Attachment','Tag','PostsTag','Category');
     // public $presetVars = true;
     public $presetVars = array(
         array(  'field'  => 'title',
@@ -17,34 +18,31 @@ class PostsController extends AppController {
         )
     );
 
+    //paginate
+    public $paginate = [
+     'limit' => 3 // 1ページに表示するデータ件数
+     ];
+
     //
     //
     //
-    public function beforeFilter() {
-        // ページャ設定
-        $pager_numbers = array(
-          'before' => ' - ',
-          'after'=>' - ',
-          'modulus'=> 10,
-          'separator'=> ' ',
-          'class'=>'pagenumbers'
-        );
-        $this->set('pager_numbers', $pager_numbers);
-      }
 
     //
     //初期画面
     //
     public function index() {
-        $this->response->disableCache();
         $this->Prg->commonProcess();
-        $conditions = $this->Post->parseCriteria($this->passedArgs);
-        $this->set('posts', $this->Post->find('all' , array(
-            'conditions' => array(
+
+        $this->paginate = array(
+            'conditions'=>array(
                 'Post.deleted' => false,
-                $conditions
-            )
-        )));
+                $this->Post->parseCriteria($this->passedArgs),
+            ),
+            'limit'=>4,
+            'maxLimit'=>24,
+        );
+
+        $this->set('posts',$this->paginate());
 
         //categoriesテーブルから種別テーブルリストを取得する
         $this->set('list',$this->Post->Category->find('list',array('fields'=>array('id','name'))));
