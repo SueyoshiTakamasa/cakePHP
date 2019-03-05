@@ -50,15 +50,24 @@ class AppController extends Controller {
             'authorize' => array('Controller') //     この行を追加しました
         )
     );
-    
+
     public function isAuthorized($user) {
         // Admin can access every action
         if (isset($user['role']) && $user['role'] === 'admin') {
             return true;
         }
-    
+
         // デフォルトは拒否
         return false;
+    }
+
+    //ログインしているかしていないか識別
+    public function isLogined(){
+        if(!empty($this->Auth->user('id'))){
+             return true;
+        }else {
+            return false;
+        }
     }
 
     public function beforeFilter() {

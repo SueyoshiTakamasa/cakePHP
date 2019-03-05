@@ -24,10 +24,6 @@ class PostsController extends AppController {
      ];
 
     //
-    //
-    //
-
-    //
     //初期画面
     //
     public function index() {
@@ -38,7 +34,7 @@ class PostsController extends AppController {
                 'Post.deleted' => false,
                 $this->Post->parseCriteria($this->passedArgs),
             ),
-            'limit'=>4,
+            'limit'=>8,
             'maxLimit'=>24,
         );
 
@@ -50,6 +46,7 @@ class PostsController extends AppController {
         //tagsテーブルからリストを取得する
         $this->set('tag',$this->Post->Tag->find('list'));
 
+        $this->set('login',$this->isLogined());
     }
 
     //
@@ -108,7 +105,8 @@ class PostsController extends AppController {
             $this->request->data = $post;
         } elseif($this->request->is(array('post', 'put'))) {
             // ここに保存のためのロジックを置く
-
+            debug($this->request->data);
+            exit;
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
             $this->Post->id = $id;
             //トランザクション管理用モデルを呼び出し

@@ -25,15 +25,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
 	</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<?php
 		echo $this->Html->meta('icon');
 
-		// echo $this->Html->css('cake.generic');
-		echo $this->Html->css('reset');
+		echo $this->Html->css('style');
 		echo $this->Html->css('colors');
-		echo $this->Html->css('tag');
 		echo $this->Html->css('checkbox');
 
 		echo $this->fetch('meta');
@@ -43,17 +40,35 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </head>
 <body>
 	<div id="container" class="bg-light">
-		<div id="header" class="navbar navbar-dark bg-fb">
+		<div id="header" class="navbar navbar-dark bg-fb-blue justify-content-start">
 			<h3 class="navbar-brand"><?php echo $this->Html->link('CakePHPでブログを作る',
 				array(
 					'controller' => 'posts',
 					'action'     => 'index',
 				),
 				array(
-					'class'      => 'text-white'
+					'class'      => 'text-white mr-auto'
 				)
 			); ?>
 			</h3>
+			<!-- ログインもしくはログアウト -->
+			<?php
+			// if(!empty($login)) {
+			// 	echo $this->Html->link('ログアウト', array(
+			// 	'controller' => 'users',
+			// 	'action'     => 'logout',
+			// 	),array(
+			// 	    'class' => 'btn text-white ml-auto',
+			// 	));
+			// } else {
+				echo $this->Html->link('ログイン', array(
+				'controller' => 'users',
+				'action'     => 'login',
+				),array(
+				    'class' => 'btn text-white ml-auto',
+				));
+			// }
+			?>
 			<!-- 記事を追加するページに遷移するボタン -->
 			<?php echo $this->Html->link('記事を追加する', array(
 			'controller' => 'posts',
