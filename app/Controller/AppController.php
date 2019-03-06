@@ -38,9 +38,8 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
             'logoutRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'display',
-                'home'
+                'controller' => 'users',
+                'action' => 'login',
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -63,14 +62,19 @@ class AppController extends Controller {
 
     //ログインしているかしていないか識別
     public function isLogined(){
-        if(!empty($this->Auth->user('id'))){
-             return true;
+        $user = $this->Auth->user();
+        //ログインしていなかったらfalseを返す
+        if(is_null($user)){
+             return false;
         }else {
-            return false;
+        //ログインしていればtrueを返す
+            return true;
         }
     }
 
     public function beforeFilter() {
+        //ログインの有無を変数に格納
+        $this->set('login',$this->isLogined());
         $this->Auth->allow('index', 'view');
     }
     //...

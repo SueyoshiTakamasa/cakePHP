@@ -27,6 +27,13 @@ class PostsController extends AppController {
     //初期画面
     //
     public function index() {
+        //ログインされていなかったらログイン画面へリダイレクト
+        if(!$this->isLogined()){
+            return $this->redirect(array(
+                'controller'  => 'users',
+                'action'      => 'login',
+            ));
+        }
         $this->Prg->commonProcess();
 
         $this->paginate = array(
@@ -45,8 +52,6 @@ class PostsController extends AppController {
 
         //tagsテーブルからリストを取得する
         $this->set('tag',$this->Post->Tag->find('list'));
-
-        $this->set('login',$this->isLogined());
     }
 
     //
@@ -61,7 +66,13 @@ class PostsController extends AppController {
         if (!$post) {
             throw new NotFoundException(__('Invalid post'));
         }
+
+        //表示させる記事のデータを変数に格納
         $this->set('post',$post);
+
+        //閲覧中のユーザーのID
+        $user = $this->Auth->user('id');
+        $this->set('user', $user);
     }
 
     //
@@ -105,8 +116,6 @@ class PostsController extends AppController {
             $this->request->data = $post;
         } elseif($this->request->is(array('post', 'put'))) {
             // ここに保存のためのロジックを置く
-            debug($this->request->data);
-            exit;
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
             $this->Post->id = $id;
             //トランザクション管理用モデルを呼び出し
@@ -149,6 +158,7 @@ class PostsController extends AppController {
 
         }
 
+        //表示させる記事のデータを変数に格納
         $this->set('list',$this->Post->Category->find('list'));
         $this->set('tag',$this->Post->Tag->find('list'));
         $this->set('attachment', $post['Attachment']);

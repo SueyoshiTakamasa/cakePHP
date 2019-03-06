@@ -53,30 +53,25 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</h3>
 			<!-- ログインもしくはログアウト -->
 			<?php
-			// if(!empty($login)) {
-			// 	echo $this->Html->link('ログアウト', array(
-			// 	'controller' => 'users',
-			// 	'action'     => 'logout',
-			// 	),array(
-			// 	    'class' => 'btn text-white ml-auto',
-			// 	));
-			// } else {
-				echo $this->Html->link('ログイン', array(
+			if($login) {
+				echo $this->Html->link('ログアウト', array(
 				'controller' => 'users',
-				'action'     => 'login',
+				'action'     => 'logout',
 				),array(
 				    'class' => 'btn text-white ml-auto',
 				));
-			// }
+
+				//記事を追加するページに遷移するボタン
+				echo $this->Html->link('記事を追加する', array(
+							'controller' => 'posts',
+							'action'     => 'add',
+							),array(
+							    'class' => 'btn btn-fb',
+							    'target' => '_blank'
+				));
+			}
 			?>
-			<!-- 記事を追加するページに遷移するボタン -->
-			<?php echo $this->Html->link('記事を追加する', array(
-			'controller' => 'posts',
-			'action'     => 'add',
-			),array(
-			    'class' => 'btn btn-fb',
-			    'target' => '_blank'
-			)); ?>
+
 		</div>
 		<div id="content" class="pb-5">
 

@@ -1,5 +1,5 @@
 <div class="py-5">
-	<div class="users form px-4 pt-3 pb-4 border mx-auto col-sm-2 mt-5">
+	<div class="users form px-4 pt-4 pb-5 border mx-auto col-sm-3 mt-5">
 	<?php echo $this->Flash->render('auth'); ?>
 	<?php echo $this->Form->create('User'); ?>
 		<h4>ログイン</h4>

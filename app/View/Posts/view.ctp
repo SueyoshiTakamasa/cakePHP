@@ -1,13 +1,28 @@
-<?php
-$this->Html->addCrumb('一覧ページ', '/');
-$this->Html->addCrumb($post['Post']['title'], '');
-?>
-<!-- File: /app/View/Posts/view.ctp -->
 <div class="container pt-4">
-	<nav class="breadcrumb">
-		<?php echo $this->Html->getCrumbs(
-		); ?>
+	<nav aria-label="breadcrumb mb-4">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+			<?php
+				echo $this->Html->link(
+					'ホーム',
+					array(
+						'action'  => 'index'
+					),
+					array(
+						'class'   => 'text-primary'
+					)
+				)
+			?>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">
+				<?php echo $post['Post']['title'];  ?>
+			</li>
+		</ol>
+		<!-- <?php
+		echo $this->Html->getCrumbs();
+		?> -->
 	</nav>
+
 	<div class="d-flex align-items-center">
 		<h1 class="mr-auto"><?php echo h($post['Post']['title']); ?></h1>
 		<span class="d-block text-muted">
@@ -24,6 +39,37 @@ $this->Html->addCrumb($post['Post']['title'], '');
 		    <?php echo $day; ?>日
 		</span>
 	</div>
+
+	<!-- 記事製作者にのみ表示 -->
+	<?php
+
+		if($user === $post['Post']['user_id']){
+			echo '<div class="">';
+	        echo $this->Html->link(
+	            '編集する',
+	            array(
+	                'action' => 'edit', $post['Post']['id']
+	            ),
+	            array(
+	                'class'  => 'btn btn-fb--green btn-sm'
+	            )
+	        );
+
+	        echo $this->Form->postLink(
+	            '削除する',
+	            array(
+	                'controller' => 'posts',
+	                'action'     => 'delete',
+	                 $post['Post']['id']
+	             ),
+	            array(
+	                'confirm'    => 'Are you sure?',
+	                'class'      => 'btn btn-secondary ml-2 btn-sm'
+	            )
+	        );
+	        echo '</div>';
+	    }
+	?>
 
 	<div>
 		<?php 
@@ -48,37 +94,10 @@ $this->Html->addCrumb($post['Post']['title'], '');
 	</div>
 
 
-	<div class="mt-4 px-2 py-4 bg-white">
+	<div class="mt-4 px-3 pt-2 pb-3 bg-white">
 		<?php echo h($post['Post']['body']); ?>
 	</div>
 
-	<div class="action border py-2 px-1 mt-5">
-		<?php
-	        echo $this->Html->link(
-	            '編集する',
-	            array(
-	                'action' => 'edit', $post['Post']['id']
-	            ),
-	            array(
-	                'class'  => 'btn btn-fb--green'
-	            )
-	        );
-	    ?>
 
-	    <?php
-	    echo $this->Form->postLink(
-	        '削除する',
-	        array(
-	            'controller' => 'posts',
-	            'action'     => 'delete',
-	             $post['Post']['id']
-	         ),
-	        array(
-	            'confirm'    => 'Are you sure?',
-	            'class'      => 'btn btn-secondary'
-	        )
-	    );
-	    ?>
-	</div>
 
 </div>

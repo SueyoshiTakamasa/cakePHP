@@ -1,0 +1,12 @@
+//
+// Base styles
+//
+
+.checkbox-or{
+	&__text{
+		display: none;
+	}
+	&:checked + .checkbox-or__text{
+		display: block;
+	}
+}
