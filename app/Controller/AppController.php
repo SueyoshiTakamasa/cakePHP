@@ -75,6 +75,10 @@ class AppController extends Controller {
     public function beforeFilter() {
         //ログインの有無を変数に格納
         $this->set('login',$this->isLogined());
+
+        $url = Router::url();
+
+        $this->set('url', $url);
         $this->Auth->allow('index', 'view');
     }
     //...

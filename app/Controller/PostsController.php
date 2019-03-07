@@ -52,6 +52,7 @@ class PostsController extends AppController {
 
         //tagsテーブルからリストを取得する
         $this->set('tag',$this->Post->Tag->find('list'));
+
     }
 
     //

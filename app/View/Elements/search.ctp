@@ -1,7 +1,8 @@
 <?php echo $this->Form->create('Post', array(
   'url'        => '/Posts/index',
   'novalidate' => true,
-  'class'      => 'mt-4',
+  'class'      => 'mt-4 d-none',
+  'id'         => 'searchBox',
 ))?>
 <div class="d-flex align-items-end">
     <!-- タイトル -->

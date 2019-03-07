@@ -79,11 +79,12 @@
 			echo '<div class="d-flex flex-wrap mt-4">';
 			for($i = 0; $i < count($attachment); $i++){
 				if(!$attachment[$i]['deleted'] && !empty($attachment[$i]['photo'])){
-					echo '<div class="w-50">';
+					echo '<div class="w-50 to-modal" data-toggle="modal" data-target="#ModalCenter" data-id=';
+					echo '"image'.$attachment[$i]['photo_dir'].'">';
 					echo $this->Html->image('/images/get/'.'attachment/photo/'.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],
 						array(
 							'id'      => 'thumbnail'.$attachment[$i]['photo_dir'],
-							'class'   => 'd-block img-fluid'
+							'class'   => 'd-block img-fluid cur-po'
 				    	));
 					echo '</div>';
 				}
@@ -99,5 +100,48 @@
 	</div>
 
 
+	<!-- Modal -->
+	<div class="modal" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body p-1 position-relative">
+	         <div id="carouselControls" class="carousel slide" data-ride="carousel">
+	           <div class="carousel-inner">
 
+	               <?php
+
+	               for($i = 0; $i < count($attachment); $i++){
+
+		               	if(!$attachment[$i]['deleted'] && !empty($attachment[$i]['photo'])){
+		               	echo '<div class="carousel-item" id=';
+	               		echo '"image'.$attachment[$i]['photo_dir'].'">';
+		               	echo $this->Html->image('/images/get/'.'attachment/photo/'.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],
+		               		array(
+		               			'id'      => 'thumbnail'.$attachment[$i]['photo_dir'],
+		               			'class'   => 'd-block img-fluid '
+		                   	));
+		               	echo '</div>';
+		               }
+	           		}
+	                ?>
+
+	           </div>
+	           <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+	             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	             <span class="sr-only">Previous</span>
+	           </a>
+	           <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+	             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	             <span class="sr-only">Next</span>
+	           </a>
+	         </div>
+	         <!-- <button type="button" class="close position-absolute" data-dismiss="modal" aria-label="Close">
+	          <span class="text-white" aria-hidden="true">&times;</span>
+	        </button> -->
+	        <div class="position-absolute text-white slide-items"></div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </div>
+
