@@ -135,9 +135,9 @@
 	             <span class="sr-only">Next</span>
 	           </a>
 	         </div>
-	         <!-- <button type="button" class="close position-absolute" data-dismiss="modal" aria-label="Close">
+	         <button type="button" class="close position-absolute" data-dismiss="modal" aria-label="Close">
 	          <span class="text-white" aria-hidden="true">&times;</span>
-	        </button> -->
+	        </button>
 	        <div class="position-absolute text-white slide-items"></div>
 	      </div>
 	    </div>
