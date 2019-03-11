@@ -78,17 +78,19 @@
 	<div class="form-group">
 		<label class="mb-0 font-weight-bold">画像</label>
 		<div class=" bg-white p-2 border rounded input-files">
-			<div>
+			<div class='d-flex align-items-center input-file-box'>
 			<?php
 				echo $this->Form->input('Attachment.0.photo',
 					array(
 						'type'     => 'file',
 						'label'    => '',
-						'class'    => 'input-file mb-1',
+						'class'    => 'input-file mb-1 cur-po',
 						'multiple' => true,
 						'id'       => '',
+						'div'      => false,
 					));
 			?>
+			<i class="fas fa-times-circle text-secondary file-delete cur-po"></i>
 			</div>
 			<span class="btn btn-sm mt-2 add-file text-primary cur-po"><i class="far fa-plus-square mr-1"></i>ファイルを追加する</span>
 		</div>
