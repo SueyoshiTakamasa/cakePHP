@@ -1,3 +1,21 @@
+--都道府県のcsvファイルの文字コードをダウンロード
+sudo yum install wget unzip
+wget http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip
+unzip ken_all.zip
+
+--shift-jisからutf8に切り替える
+sudo yum install epel-release
+sudo yum install nkf
+nkf -w KEN_ALL.CSV > ken_all_u.csv
+
+--データを共有フォルダへ移動
+mv ken_all_u.csv /vagrant/
+
+--ここからmysqlに入る
+mysql -u root
+use databases blog_cakephp_backup
+
+--テーブルを作成
 create table zipcode (
  id int unsigned not null auto_increment,
  jiscode varchar(255),
@@ -20,7 +38,9 @@ create table zipcode (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-LOAD DATA LOCAL INFILE '/vagrant/ken_all_u.csv'
+--データをアップロード
+SET character_set_database=utf8;
+LOAD DATA LOCAL INFILE '/vagrant/ken_all_u.CSV'
 
 INTO TABLE zipcode
 FIELDS
