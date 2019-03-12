@@ -9,6 +9,7 @@ module.exports = {
   	"./src/modules/modal.js",
   	"./src/modules/carousel.js",
   	"./src/modules/addFile.js",
+    "./src/modules/zipcodeSearch.js",
   ],
 
   // 出力ファイル
