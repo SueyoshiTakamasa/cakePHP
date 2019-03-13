@@ -9,8 +9,14 @@ $('#zipcode').change(function(e) {
 　　　　　　　　'zipcode' : zipcode,
 　　　　　　},
         success : function(data){
-             console.log(data[0].Zipcode);
-                },
+            var dataParse = JSON.parse(data);
+            var address   = dataParse[0].Zipcode;
+            var pref      = address.pref;
+            var city      = address.city + address.street;
+
+            $('#pref').val(pref);
+            $('#city').val(city);
+        },
         error: function(){
             alert('ユーザーの役割の更新が失敗しました');
         }
