@@ -78,7 +78,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			?>
 
 		</div>
-		<div id="content" class="pb-5">
+		<div id="content" class="pb-5 pt-4">
 
 			<?php echo $this->Flash->render(); ?>
 
@@ -94,6 +94,30 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<p>
 				<?php echo $cakeVersion; ?>
 			</p> -->
+			<?php
+				echo $this->Html->link('タグ編集', array(
+				'controller' => 'tags',
+				'action'     => 'index',
+				),array(
+				    'class' => 'btn text-white ml-auto',
+				));
+			 ?>
+			 <?php
+				echo $this->Html->link('カテゴリー編集', array(
+				'controller' => 'categories',
+				'action'     => 'index',
+				),array(
+				    'class' => 'btn text-white ml-auto',
+				));
+			 ?>
+			 <?php
+				echo $this->Html->link('住所検索', array(
+				'controller' => ' zipcodes',
+				'action'     => 'index',
+				),array(
+				    'class' => 'btn text-white ml-auto',
+				));
+			 ?>
 			<span class="text-center text-white d-block">
 				&copy;クリエイター
 			</span>

@@ -40,9 +40,9 @@ create table zipcode (
 
 --データをアップロード
 SET character_set_database=utf8;
-LOAD DATA LOCAL INFILE '/vagrant/ken_all_u.CSV'
+LOAD DATA LOCAL INFILE '/vagrant/KEN_ALL.CSV'
 
-INTO TABLE zipcode
+INTO TABLE zipcodes
 FIELDS
     TERMINATED BY ','
     OPTIONALLY ENCLOSED BY '"'
@@ -67,3 +67,5 @@ LINES
  flag5,
  flag6
 );
+
+LOAD DATA LOCAL INFILE '/vagrant/KEN_ALL.CSV' INTO TABLE zipcodes TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '' LINES STARTING BY '' TERMINATED BY '\r\n' (jiscode,zipcode_old,zipcode,pref_kana,city_kana,street_kana,pref,city,street,flag1,flag2,flag3,flag4,flag5,flag6)
