@@ -74,6 +74,12 @@ class PostsController extends AppController {
         //閲覧中のユーザーのID
         $user = $this->Auth->user('id');
         $this->set('user', $user);
+
+        //categoriesテーブルから種別テーブルリストを取得する
+        $this->set('list',$this->Post->Category->find('list',array('fields'=>array('id','name'))));
+
+        //tagsテーブルからリストを取得する
+        $this->set('tag',$this->Post->Tag->find('list'));
     }
 
     //

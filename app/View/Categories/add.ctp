@@ -1,5 +1,4 @@
 <!-- カテゴリー追加用ページ-->
-
 <div class="categories form">
 <?php echo $this->Form->create('Category'); ?>
 	<fieldset>

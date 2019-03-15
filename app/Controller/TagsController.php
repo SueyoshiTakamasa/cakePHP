@@ -1,8 +1,8 @@
 <?php
 App::uses('AppController','Controller');
 class TagsController extends AppController{
-	public $uses = array('Tag');	
-	
+	public $uses = array('Tag');
+
 	//
 	//タグの一覧ページ
 	//

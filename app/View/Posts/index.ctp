@@ -1,28 +1,5 @@
 <div class="container">
 
-    <nav aria-label="breadcrumb mb-4">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-            <?php
-                echo $this->Html->link(
-                    'ホーム',
-                    array(
-                        'action'  => 'index'
-                    ),
-                    array(
-                        'class'   => 'active'
-                    )
-                )
-            ?>
-            </li>
-        </ol>
-        <!-- <?php
-        echo $this->Html->getCrumbs();
-        ?> -->
-    </nav>
-
-<?php echo $this->element('search');?>
-
 <div class="post-list mt-5 d-flex flex-wrap">
 
 

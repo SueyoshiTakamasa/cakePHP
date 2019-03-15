@@ -1,39 +1,66 @@
-<!--
-カテゴリー初期画面
--->
-<!-- categories -->
-<div class="categories index">
-	<h2><?php echo __('Categories'); ?></h2>
+<div class="container">
+	<h2 class="font-weight-bold">カテゴリー一覧</h2>
 
-	<!-- ここから | カテゴリー一覧を表示-->
-	<table>
+		<!-- ここから | タグを追加-->
+	    <div class="mt-4">
+			<span>
+				<?php
+					echo $this->Html->link(__('タグを追加する'),
+						array(
+							'action' => 'add'
+						),
+						array(
+							'class'  => 'btn btn-fb--green px-3'
+						)
+					);
+				?>
+			</span>
+		</div>
+		<!-- ここまで | タグを追加-->
+
+	<table class="table table-bordered mt-4 bg-white">
+<!-- 		<tr class="">
+	        <th class="w-75">タグ名</th>
+	        <th></th>
+	    </tr> -->
+
+		<?php foreach($categories as $category): ?>
 		<tr>
-        <th>Id</th>
-        <th>category</th>
-        <th>Actions</th>
-        </tr>
-		<?php foreach ($categories as $category): ?>
-			<tr>
-				<td><?php echo h($category['Category']['id']); ?>&nbsp;</td>
-				<td><?php echo h($category['Category']['name']); ?>&nbsp;</td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('action' => 'view', $category['Category']['id'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $category['Category']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $category['Category']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $category['Category']['id']))); ?>
-				</td>
-			</tr>
-	    <?php endforeach; ?>
-    </table>
-    <!-- ここまで | カテゴリー一覧を表示-->
+			<td class="w-75"><?php echo h($category['Category']['name']); ?>&nbsp;</td>
+			<td class="text-center">
+				<!-- <?php
+				echo $this->Html->link(__('詳細'),
+				array(
+					'action' => 'view', $tag['Tag']['id'],
+				)
+				);
+				?> -->
+				<?php
+					echo $this->Html->link(__('編集する'),
+						array(
+							'action' => 'edit', $category['Category']['id']
+						),
+						array(
+							'class'  => 'btn btn-outline-fb-blue mr-1 px-4'
+						)
+					);
+				?>
+				<?php
+					echo $this->Form->postLink(__('削除する'),
+						array(
+							'action' => 'delete', $category['Category']['id']
+						),
+						array(
+							'confirm' => __('Are you sure you want to delete # %s?', $category['Category']['id']),
+							'class'   => 'btn btn-outline-secondary px-4'
+						)
+					);
+				?>
+			</td>
+		</tr>
+		<?php endforeach; ?>
 
-    <!-- ここから | カテゴリーを追加-->
-    <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Category'), array('action' => 'add')); ?></li>
-	</ul>
-	</div>
-	<!-- ここまで | カテゴリーを追加-->
+		<?php unset($categories); ?>
+	</table>
 
 </div>
-<!-- /categories -->

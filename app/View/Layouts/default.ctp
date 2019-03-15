@@ -61,7 +61,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				    'class' => 'btn text-white ml-auto',
 				));
 
-				if($url == '/'){
+				if($url == '/' || preg_match('/Posts/',$url)){
 					echo '<div class="btn text-white cur-po" id="toSearch">検索する</div>';
 				}
 
@@ -78,9 +78,37 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			?>
 
 		</div>
+
 		<div id="content" class="pb-5 pt-4">
 
 			<?php echo $this->Flash->render(); ?>
+
+			<div class="container">
+				<!-- パンくずリスト -->
+				<?php if($url != '/users/login'){
+					echo '<nav aria-label="breadcrumb mb-4">';
+					echo '<ol class="breadcrumb">';
+					echo '<li class="breadcrumb-item">';
+					echo $this->Html->link(
+				                'ホーム',
+				                array(
+				                    'action'  => 'index'
+				                ),
+				                array(
+				                    'class'   => 'active'
+				                )
+				    );
+				    echo '</li>';
+				    echo '</ol>';
+				    // echo $this->Html->getCrumbs();
+				    echo '</nav>';
+				} ?>
+
+
+				<!-- 検索ボックス -->
+				<?php echo $this->element('search');?>
+			</div>
+
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
@@ -112,7 +140,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			 ?>
 			 <?php
 				echo $this->Html->link('住所検索', array(
-				'controller' => ' zipcodes',
+				'controller' => 'zipcodes',
 				'action'     => 'index',
 				),array(
 				    'class' => 'btn text-white ml-auto',

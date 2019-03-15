@@ -1,27 +1,5 @@
 <div class="container">
-	<nav aria-label="breadcrumb mb-4">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-			<?php
-				echo $this->Html->link(
-					'ホーム',
-					array(
-						'action'  => 'index'
-					),
-					array(
-						'class'   => 'text-primary'
-					)
-				)
-			?>
-			</li>
-			<li class="breadcrumb-item active" aria-current="page">
-				<?php echo $post['Post']['title'];  ?>
-			</li>
-		</ol>
-		<!-- <?php
-		echo $this->Html->getCrumbs();
-		?> -->
-	</nav>
+
 
 	<div class="d-flex align-items-center">
 		<h1 class="mr-auto"><?php echo h($post['Post']['title']); ?></h1>

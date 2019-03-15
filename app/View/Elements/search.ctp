@@ -1,10 +1,10 @@
 <?php echo $this->Form->create('Post', array(
   'url'        => '/Posts/index',
   'novalidate' => true,
-  'class'      => 'mt-4 d-none',
+  'class'      => 'd-none',
   'id'         => 'searchBox',
 ))?>
-<div class="d-flex align-items-end">
+<div class="d-flex align-items-end mb-4">
     <!-- タイトル -->
     <div class="form-group w-50 mb-0">
         <label class="mb-0 font-weight-bold" style="font-size:12px;">タイトル</label>
@@ -33,10 +33,11 @@
    <div class="form-group mb-0">
         <label class="mb-0 font-weight-bold" style="font-size:12px;">タグ</label>
         <div class="dropdown w-25 rounded-0">
-          <button class="btn bg-white border dropdown-toggle d-block px-2 rounded-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn bg-white border dropdown-toggle d-block px-2 rounded-0" id="dropdownMenuButton" data-toggle="dropdown" type="button">
               タグを表示する
+              <span class="caret"></span>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu d-none" aria-labelledby="dropdownMenuButton">
           <?php
             echo $this->Form->input('tag',array(
                 'type'     =>'select',

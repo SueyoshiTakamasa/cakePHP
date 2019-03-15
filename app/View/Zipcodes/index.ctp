@@ -50,8 +50,11 @@
 			    'class' => 'form-control w-25 mt-2',
 			    'id'    => 'zipcode'
 			    ))?>
+			    <ul id="idList" class="list-group pt-2 pb-3 px-3 bg-light mt-2 fz-12 position-absolute d-none">
+			    	<span class="ml-2 mb-1"></span>
+			    </ul>
 			    <span class="d-block text-secondary mt-1">例：5192146</span>
-			    <span class="d-block mt-2 text-secondary">ハイフンを入れずに全角もしくは半角でごください</span>
+			    <span class="d-block mt-2 text-secondary">ハイフンを入れずに全角もしくは半角でご入力ください</span>
 			</div>
 
 			<div class="form-group mt-4 mb-0">

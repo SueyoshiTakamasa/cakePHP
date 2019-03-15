@@ -18,9 +18,11 @@ class ZipcodesController extends AppController{
 			         'zipcode'=>$this->request->data['zipcode'],
 				),
 			));
+
+			return json_encode($result);
+
 		}
 
-		return json_encode($result);
 	}
 
 	public function csvupload(){
@@ -36,7 +38,6 @@ class ZipcodesController extends AppController{
 			    $transaction = $this->TransactionManager->begin();
 
 			    try{
-			    	    //アップロードしたcsvファイルを配列に格納する<--ここから
 
 			    	    //ファイルの保存先
 			    	    $file_path  = Router::url($_SERVER["DOCUMENT_ROOT"].'/../Files/csv/');
@@ -68,8 +69,6 @@ class ZipcodesController extends AppController{
 			    		    $this->Zipcode->query($sql);
 
 			    		    unlink($file_path.$file_name);
-			    		    } else {
-			    		       	$err_msg = "ファイルをアップロードできません。";
 			    		    }
 
 			    		    //モデルの処理がすべて上手くいったらコミット
@@ -81,13 +80,11 @@ class ZipcodesController extends AppController{
 			    		    // return $this->redirect(array('action' => 'index'));
 
 
-
-
 			        }catch(Exception $e){
 				        //失敗したらロールバック
 				        $this->TransactionManager->rollback($transaction);
 				        //フラッシュで知らせる
-				        $this->Flash->error(__('Unable to update your post.'));
+				        $this->Flash->error(__('CSVファイルはアップロードできませんでした'));
 			    	}
 		  	  }
 	}

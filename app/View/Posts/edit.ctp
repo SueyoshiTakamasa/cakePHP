@@ -1,27 +1,5 @@
 <div class="container pb-4">
 
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-			<?php
-				echo $this->Html->link(
-					'ホーム',
-					array(
-						'action'  => 'index'
-					),
-					array(
-						'class'   => 'text-primary'
-					)
-				)
-			?>
-			</li>
-			<li class="breadcrumb-item active" aria-current="page">
-				<!-- <?php echo $this->data['Post']['title'];  ?> -->
-				編集ページ
-			</li>
-		</ol>
-	</nav>
-
 	<h1>編集ページ</h1>
 
 	<?php
