@@ -12,6 +12,7 @@
         'type' => 'text',
         'div' => false,
         'label' => false,
+        'required'   => false,
         'class' => 'form-control rounded-0 rounded-left',
         ))?>
     </div>

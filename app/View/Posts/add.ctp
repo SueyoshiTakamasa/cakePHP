@@ -38,6 +38,7 @@
 					'class'   => 'form-control',
 					'label'   => '',
 					'div'     => false,
+					'required'   => false,
 				)
 			);
 		?>
@@ -130,6 +131,7 @@
 				array(
 					'label'   => '',
 					'class'   => 'form-group border py-2 px-3 w-100 rounded',
+					'required'   => false,
 				));
 		?>
 	</div>

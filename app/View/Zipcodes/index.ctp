@@ -47,6 +47,7 @@
 			    'type' => 'text',
 			    'div' => false,
 			    'label' => false,
+			    'required'   => false,
 			    'class' => 'form-control w-25 mt-2',
 			    'id'    => 'zipcode'
 			    ))?>
@@ -63,6 +64,7 @@
 			    'type' => 'text',
 			    'div' => false,
 			    'label' => false,
+			    'required'   => false,
 			    'class' => 'form-control mt-2',
 			    'id'    => 'pref',
 			    ))?>
@@ -75,6 +77,7 @@
 			    'type' => 'text',
 			    'div' => false,
 			    'label' => false,
+			    'required'   => false,
 			    'class' => 'form-control mt-2',
 			    'id'    => 'city',
 			    ))?>
