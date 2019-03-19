@@ -33,9 +33,9 @@
             </h5>
 
             <!-- カテゴリー -->
-            <span class="d-block">
+            <!-- <span class="d-block">
                 <?php echo h($post['Category']['name']); ?>
-            </span>
+            </span> -->
 
             <!-- 日にち -->
             <span class="d-block text-muted">
@@ -100,7 +100,7 @@
 </div>
 
     <nav class="mt-4 d-block">
-        <ul class="pagination">
+        <ul class="pagination justify-content-center">
             <?php
                 echo $this->Paginator->numbers(array(
                     'first' => '', //ページ数が多いとき最初のページを出すか（数字で指定）
@@ -113,7 +113,7 @@
                     'tag'=>'li',//ページ番号を囲むタグ（デフォルト値：設定無し）
                     'class'=>'page-link',//上記タグのクラス名を設定（デフォルト値：設定無し）
                     'currentTag'=>'',//表示中のページ番号のタグを設定（デフォルト値：null）
-                    'currentClass'=>'active',
+                    'currentClass'=>'text-secondary',
                 ));
             ?>
         </ul>

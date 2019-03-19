@@ -7,7 +7,7 @@
 			'type'    => 'file',
 			'class'   => 'mt-3',
 		));?>
-
+		<input type="hidden" name="<?php echo ini_get("session.upload_progress.name"); ?>" value="example" />
 		<div class="form-group bg-white px-3 py-4">
 				<div class='d-flex align-items-center'>
 				<?php
@@ -28,6 +28,7 @@
 				   'escape' => false,
 				   'class'  => 'btn btn-fb--green mt-4 pl-4 pr-4',
 				 ))?>
+				 <span id="progress">0%</span>
 		</div>
 
 	</div>
@@ -65,7 +66,7 @@
 			    'div' => false,
 			    'label' => false,
 			    'required'   => false,
-			    'class' => 'form-control mt-2',
+			    'class' => 'form-control mt-2 w-25',
 			    'id'    => 'pref',
 			    ))?>
 			    <span class="d-block text-secondary mt-1">例：三重県</span>
@@ -78,7 +79,7 @@
 			    'div' => false,
 			    'label' => false,
 			    'required'   => false,
-			    'class' => 'form-control mt-2',
+			    'class' => 'form-control mt-2 w-50',
 			    'id'    => 'city',
 			    ))?>
 			    <span class="d-block text-secondary mt-1">例：松阪市阿波曽町</span>

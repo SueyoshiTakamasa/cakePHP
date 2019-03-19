@@ -28,6 +28,7 @@ class ZipcodesController extends AppController{
 	public function csvupload(){
 			$file_temp_name = $this->request->data['Csv']['file']["tmp_name"];
 			$file_name      = $this->request->data['Csv']['file']["name"];
+			$file_size      = $this->request->data['Csv']['file']["size"];
 		    if (is_uploaded_file($file_temp_name)
 		      &&
 		      ($fp = fopen($file_temp_name,'r')) !== false
@@ -93,8 +94,10 @@ class ZipcodesController extends AppController{
 
 		//csvファイルのアップロードボタンが押されたらcsvアップロードアクションが発動する。
 		if(!empty($this->request->data['Csv'])){
+			debug($this->data);
 			$this->csvupload();
 		}
+
 
 	}
 }

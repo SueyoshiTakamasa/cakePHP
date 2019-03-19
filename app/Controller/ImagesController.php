@@ -34,4 +34,8 @@ class ImagesController extends AppController {
         readfile($file);
 
     }
+
+    public function beforeFilter() {
+            $this->Auth->allow('get');
+    }
 }

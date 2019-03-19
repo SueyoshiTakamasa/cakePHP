@@ -27,13 +27,6 @@ class PostsController extends AppController {
     //初期画面
     //
     public function index() {
-        //ログインされていなかったらログイン画面へリダイレクト
-        if(!$this->isLogined()){
-            return $this->redirect(array(
-                'controller'  => 'users',
-                'action'      => 'login',
-            ));
-        }
         $this->Prg->commonProcess();
 
         $this->paginate = array(

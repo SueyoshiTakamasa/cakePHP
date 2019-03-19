@@ -61,6 +61,34 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				    'class' => 'btn text-white ml-auto',
 				));
 
+				if($url == '/' || preg_match('/posts/',$url)){
+					echo '<div class="btn text-white cur-po" id="toSearch">検索する</div>';
+				}
+
+
+				//記事を追加するページに遷移するボタン
+				echo $this->Html->link('記事を追加する', array(
+							'controller' => 'posts',
+							'action'     => 'add',
+							),array(
+							    'class' => 'btn btn-fb',
+							    'target' => '_blank'
+				));
+			} else {
+				echo $this->Html->link('新規登録', array(
+				'controller' => 'users',
+				'action'     => 'add',
+				),array(
+				    'class' => 'btn text-white ml-auto',
+				));
+
+				echo $this->Html->link('ログイン', array(
+				'controller' => 'users',
+				'action'     => 'login',
+				),array(
+				    'class' => 'btn text-white',
+				));
+
 				if($url == '/' || preg_match('/Posts/',$url)){
 					echo '<div class="btn text-white cur-po" id="toSearch">検索する</div>';
 				}
@@ -79,11 +107,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		</div>
 
-		<div id="content" class="pb-5 pt-4">
+		<div id="content" class="pb-5">
 
 			<?php echo $this->Flash->render(); ?>
 
-			<div class="container">
+			<div class="container pt-4">
 				<!-- パンくずリスト -->
 				<?php if($url != '/users/login'){
 					echo '<nav aria-label="breadcrumb mb-4">';
