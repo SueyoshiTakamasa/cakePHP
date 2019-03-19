@@ -2,18 +2,9 @@
 /**
  * Web Access Frontend for TestSuite
  *
- * CakePHP(tm) Tests <https://book.cakephp.org/2.0/en/development/testing.html>
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  * @link          https://book.cakephp.org/2.0/en/development/testing.html
  * @package       app.webroot
  * @since         CakePHP(tm) v 1.2.0.4433
- * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
 set_time_limit(0);
@@ -47,13 +38,6 @@ if (!defined('APP_DIR')) {
 }
 
 /**
- * Config Directory
- */
-if (!defined('CONFIG')) {
-	define('CONFIG', ROOT . DS . APP_DIR . DS . 'Config' . DS);
-}
-
-/**
  * The absolute path to the "Cake" directory, WITHOUT a trailing DS.
  *
  * For ease of development CakePHP uses PHP's include_path. If you
@@ -62,9 +46,9 @@ if (!defined('CONFIG')) {
  * Leaving this constant undefined will result in it being defined in Cake/bootstrap.php
  *
  * The following line differs from its sibling
- * /lib/Cake/Console/Templates/skel/webroot/test.php
+ * /app/webroot/test.php
  */
-//define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'lib');
+//define('CAKE_CORE_INCLUDE_PATH',  DS . 'vagrant' . DS . 'cakePHP' . DS . 'lib');
 
 /**
  * This auto-detects CakePHP as a composer installed library.
@@ -100,7 +84,7 @@ if (!defined('CAKE_CORE_INCLUDE_PATH')) {
 	}
 }
 if (!empty($failed)) {
-	trigger_error("CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/test.php. It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
+	trigger_error("CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php. It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
 }
 
 if (Configure::read('debug') < 1) {

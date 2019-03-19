@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="form-group">
-            <div class="col-md-12 text-right action-btns">
+            <div class="container text-right action-btns">
                 <?php echo "<?php echo \$this->Html->link(__('<span class=\"btn btn-warning btn-md\"><span class=\"glyphicon glyphicon-th-list\"></span>&nbsp;' . __(\"{$modelClass}\").__(\"List\") . '</span>'), array('action' => 'index'), array('escape' => false)); ?>\n"; ?>
             </div>
         </div>
@@ -157,7 +157,7 @@ PHP
                                         'label'    => false,
                                         'error'    => false,
                                     )
-                                ); 
+                                );
                                 ?>
                                 </div>
                             </div>

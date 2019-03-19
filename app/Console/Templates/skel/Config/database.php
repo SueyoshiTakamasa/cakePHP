@@ -57,7 +57,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => '28faIuy',
-		'database' => 'admin',
+		'database' => 'blog_cakephp_backup',
 		'prefix' => '',
 		'encoding' => 'utf8',
 		"flags" => array(
