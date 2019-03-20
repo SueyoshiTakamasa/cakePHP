@@ -1,4 +1,4 @@
-<div class="admins index">
+<div class="admins index col-md-10">
     <ol class="breadcrumb">
         <li><?php echo $this->Html->link(__('Home'), array('controller' => 'pages', 'action' => 'display'), array('escape' => false)); ?></li>
         <li class="active"><?php echo __('Admins'); ?></li>

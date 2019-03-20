@@ -1,4 +1,4 @@
-<div class="<?php echo $pluralVar; ?> index">
+<div class="<?php echo $pluralVar; ?> index col-md-10">
     <ol class="breadcrumb">
         <li><?php echo "<?php echo \$this->Html->link(__('Home'), array('controller' => 'pages', 'action' => 'display'), array('escape' => false)); ?>"; ?></li>
         <li class="active"><?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?></li>

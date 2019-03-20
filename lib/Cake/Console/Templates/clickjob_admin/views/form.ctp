@@ -1,5 +1,5 @@
-<div class="<?php echo $pluralVar; ?> form">
-    <ol class="breadcrumb">
+<div class="<?php echo $pluralVar; ?> form  col-md-10 bg-light">
+<ol class="breadcrumb bg-white">
         <li><?php echo "<?php echo \$this->Html->link(__('Home'), array('controller' => 'pages', 'action' => 'display'), array('escape' => false)); ?>"; ?></li>
         <li><?php echo "<?php echo \$this->Html->link(__('{$singularHumanName}'), array('action' => 'index'), array('escape' => false)); ?>" ?></li>
         <?php if (strpos($action, 'add') === false): ?>
@@ -8,17 +8,16 @@
         <li class="active"><?php echo "<?php echo __('Add'); ?>"; ?></li>
         <?php endif; ?>
     </ol>
-
     <div class="row">
-        <div class="form-group">
+<!--         <div class="form-group">
             <div class="col-md-12 text-right action-btns">
                 <?php echo "<?php echo \$this->Html->link(__('<span class=\"btn btn-warning btn-md\"><span class=\"glyphicon glyphicon-th-list\"></span>&nbsp;' . __(\"{$modelClass}\").__(\"List\") . '</span>'), array('action' => 'index'), array('escape' => false)); ?>\n"; ?>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-md-12">
             <?php echo "<?php echo \$this->Form->create('', array('role' => 'form', 'type' => 'file')); ?>\n"; ?>
-            <table cellpadding="0" cellspacing="0" class="table table-bordered horizontal-form">
+            <table cellpadding="0" cellspacing="0" class="table table-bordered bg-white horizontal-form">
                 <?php if (strpos($action, 'add') === false): ?>
                 <?php echo "<?php echo \$this->Form->hidden(\"{$modelClass}.id\", array('class' => 'form-control', 'label' => false, 'required' => false));?>\n"; ?>
                 <?php endif; ?>
@@ -26,7 +25,7 @@
                 <?php $isDateField = isset($schema[$field]['type']) && $schema[$field]['type'] == 'datetime';?>
                 <?php if (!in_array($field, array('created', 'updated', 'deleted', 'id', 'photo_dir'))): ?>
                 <tr>
-                    <th colspan="3"><?php echo "<?php echo __('" .Inflector::humanize($field). "') ?>"; ?><span class="require"></span></th>
+                    <th colspan="3" class="align-middle"><?php echo "<?php echo __('" .Inflector::humanize($field). "') ?>"; ?><span class="require"></span></th>
                     <td colspan="9">
                         <div class="row <?php echo $field == 'photo' ? 'photo-column' : ''; ?> <?php echo $isDateField ? 'col-xs-12' : ''; ?>">
                         <?php $formInline = strpos($field, '_id') > 0 || strpos($field, '_type'); ?>

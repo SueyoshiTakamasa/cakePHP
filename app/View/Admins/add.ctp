@@ -1,22 +1,21 @@
-<div class="admins form container">
-    <ol class="breadcrumb">
+<div class="admins form  col-md-10 bg-light">
+<ol class="breadcrumb bg-white">
         <li><?php echo $this->Html->link(__('Home'), array('controller' => 'pages', 'action' => 'display'), array('escape' => false)); ?></li>
         <li><?php echo $this->Html->link(__('Admin'), array('action' => 'index'), array('escape' => false)); ?></li>
                 <li class="active"><?php echo __('Add'); ?></li>
             </ol>
-
     <div class="row">
-        <div class="form-group">
+<!--         <div class="form-group">
             <div class="col-md-12 text-right action-btns">
                 <?php echo $this->Html->link(__('<span class="btn btn-warning btn-md"><span class="glyphicon glyphicon-th-list"></span>&nbsp;' . __("Admin").__("List") . '</span>'), array('action' => 'index'), array('escape' => false)); ?>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-md-12">
             <?php echo $this->Form->create('', array('role' => 'form', 'type' => 'file')); ?>
-            <table cellpadding="0" cellspacing="0" class="table table-bordered horizontal-form">
+            <table cellpadding="0" cellspacing="0" class="table table-bordered bg-white horizontal-form">
                                                                                                                                 <tr>
-                    <th colspan="3"><?php echo __('Name') ?><span class="require"></span></th>
+                    <th colspan="3" class="align-middle"><?php echo __('Name') ?><span class="require"></span></th>
                     <td colspan="9">
                         <div class="row  ">
                                                     <div class="col-xs-12 ">
@@ -31,7 +30,7 @@
                     </td>
                 </tr>
                                                                                 <tr>
-                    <th colspan="3"><?php echo __('Photo') ?><span class="require"></span></th>
+                    <th colspan="3" class="align-middle"><?php echo __('Photo') ?><span class="require"></span></th>
                     <td colspan="9">
                         <div class="row photo-column ">
                                                     <div class="col-xs-12 ">
@@ -57,7 +56,7 @@
                     </td>
                 </tr>
                                                                                 <tr>
-                    <th colspan="3"><?php echo __('Birthday') ?><span class="require"></span></th>
+                    <th colspan="3" class="align-middle"><?php echo __('Birthday') ?><span class="require"></span></th>
                     <td colspan="9">
                         <div class="row  col-xs-12">
                                                     <div class="col-xs-12 ">
@@ -78,7 +77,7 @@
                     </td>
                 </tr>
                                                                                 <tr>
-                    <th colspan="3"><?php echo __('Body') ?><span class="require"></span></th>
+                    <th colspan="3" class="align-middle"><?php echo __('Body') ?><span class="require"></span></th>
                     <td colspan="9">
                         <div class="row  ">
                                                     <div class="col-xs-12 ">
@@ -93,7 +92,7 @@
                     </td>
                 </tr>
                                                                                                                                 <tr>
-                    <th colspan="3"><?php echo __('Modified') ?><span class="require"></span></th>
+                    <th colspan="3" class="align-middle"><?php echo __('Modified') ?><span class="require"></span></th>
                     <td colspan="9">
                         <div class="row  col-xs-12">
                                                     <div class="col-xs-12 ">
@@ -114,7 +113,7 @@
                     </td>
                 </tr>
                                                                                                                                 <tr>
-                    <th colspan="3"><?php echo __('Deleted Time') ?><span class="require"></span></th>
+                    <th colspan="3" class="align-middle"><?php echo __('Deleted Time') ?><span class="require"></span></th>
                     <td colspan="9">
                         <div class="row  col-xs-12">
                                                     <div class="col-xs-12 ">
