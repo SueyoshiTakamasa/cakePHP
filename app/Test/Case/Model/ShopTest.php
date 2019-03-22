@@ -1,10 +1,10 @@
 <?php
-App::uses('Admin', 'Model');
+App::uses('Shop', 'Model');
 
 /**
- * Admin Test Case
+ * Shop Test Case
  */
-class AdminTest extends CakeTestCase {
+class ShopTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -12,10 +12,8 @@ class AdminTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.admin',
 		'app.shop',
-		'app.paymenttype',
-		'app.admins_paymenttype'
+		'app.admin'
 	);
 
 /**
@@ -25,7 +23,7 @@ class AdminTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Admin = ClassRegistry::init('Admin');
+		$this->Shop = ClassRegistry::init('Shop');
 	}
 
 /**
@@ -34,7 +32,7 @@ class AdminTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Admin);
+		unset($this->Shop);
 
 		parent::tearDown();
 	}

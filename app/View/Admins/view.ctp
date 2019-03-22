@@ -32,18 +32,29 @@
                                         <td><?php echo h($admin['Admin']['birthday']); ?>&nbsp;</td>
                                     </tr>
                                                                 <tr>
-                    <th><?php echo __('Body'); ?></th>
-                                        <td><?php echo h($admin['Admin']['body']); ?>&nbsp;</td>
+                    <th><?php echo __('Comment'); ?></th>
+                                        <td><?php echo nl2br($admin['Admin']['comment']); ?>&nbsp;</td>
                                     </tr>
-                                                                                                <tr>
-                    <th><?php echo __('Modified'); ?></th>
-                                        <td><?php echo h($admin['Admin']['modified']); ?>&nbsp;</td>
+                                                                                                                                <tr>
+                    <th><?php echo __('Shop Id'); ?></th>
+                                        <td><?php echo h($admin['Shop']['name']); ?>&nbsp;</td>
                                     </tr>
-                                                                                                <tr>
-                    <th><?php echo __('Deleted Time'); ?></th>
-                                        <td><?php echo h($admin['Admin']['deleted_time']); ?>&nbsp;</td>
+                                                                <tr>
+                    <th><?php echo __('Emplyment Type'); ?></th>
+                                        <td><?php echo h($emplyment_type[$admin['Admin']['emplyment_type']]); ?>&nbsp;</td>
                                     </tr>
-                                                            </table>
+                                                                                <tr>
+                    <th><?php echo __('Paymenttype') ?></th>
+                    <td>
+                        <?php foreach($admin['Paymenttype'] AS $paymenttype): ?>
+                        <?php if($paymenttype['del_flg'] == 0) { ?>
+                        <?php echo h($paymenttype['name']) ?>
+                        <?php } ?>
+                        <?php endforeach; ?>
+                        &nbsp;
+                    </td>
+                </tr>
+                                            </table>
         </div>
     </div>
 </div>

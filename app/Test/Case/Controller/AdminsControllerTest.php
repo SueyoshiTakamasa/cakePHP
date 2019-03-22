@@ -12,7 +12,10 @@ class AdminsControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.admin'
+		'app.admin',
+		'app.shop',
+		'app.paymenttype',
+		'app.admins_paymenttype'
 	);
 
 /**

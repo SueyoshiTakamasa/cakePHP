@@ -1,9 +1,9 @@
-<div class="admins form  col-md-10 bg-light">
-<ol class="breadcrumb bg-white">
+<div class="admins form">
+<!-- <ol class="breadcrumb">
         <li><?php echo $this->Html->link(__('Home'), array('controller' => 'pages', 'action' => 'display'), array('escape' => false)); ?></li>
         <li><?php echo $this->Html->link(__('Admin'), array('action' => 'index'), array('escape' => false)); ?></li>
                 <li class="active">『<?php echo h($this->request->data['Admin']['name']); ?>』の<?php echo __('Edit'); ?></li>
-            </ol>
+            </ol> -->
     <div class="row">
 <!--         <div class="form-group">
             <div class="col-md-12 text-right action-btns">
@@ -17,8 +17,8 @@
                                 <?php echo $this->Form->hidden("Admin.id", array('class' => 'form-control', 'label' => false, 'required' => false));?>
                                                                                                                                 <tr>
                     <th colspan="3" class="align-middle"><?php echo __('Name') ?><span class="require"></span></th>
-                    <td colspan="9">
-                        <div class="row  ">
+                    <td colspan="9" >
+                        <div class=" ">
                                                     <div class="col-xs-12 ">
                                                                                                        <?php echo $this->Form->input("Admin.name", [
                                         'type' => 'text',
@@ -32,8 +32,8 @@
                 </tr>
                                                                                 <tr>
                     <th colspan="3" class="align-middle"><?php echo __('Photo') ?><span class="require"></span></th>
-                    <td colspan="9">
-                        <div class="row photo-column ">
+                    <td colspan="9" >
+                        <div class="photo-column ">
                                                     <div class="col-xs-12 ">
                                                                    <div>
                                         <?php echo $this->Form->input("Admin.photo", array('type' => 'file', 'class' => 'form-control', 'style' => 'display: none;', 'required' => false, 'label' => false, 'placeholder' => __('Photo')));?>
@@ -58,11 +58,11 @@
                 </tr>
                                                                                 <tr>
                     <th colspan="3" class="align-middle"><?php echo __('Birthday') ?><span class="require"></span></th>
-                    <td colspan="9">
-                        <div class="row  col-xs-12">
+                    <td colspan="9" >
+                        <div class=" col-xs-12">
                                                     <div class="col-xs-12 ">
-                                                                   <div class="input-group date datetimepicker">
-                                                                                <?php echo $this->Form->input("Admin.birthday", [
+                                                                   <div id="date" class="input-group">
+                                        <!--                                         <?php echo $this->Form->input("Admin.birthday", [
                                             'class' => 'form-control', 
                                             'error' => false, 
                                             'type' => 'text', 
@@ -71,72 +71,83 @@
                                             'required' => false, 
                                             'readonly' => false, 
                                             'after' => '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
-                                        ]);?>                                    </div>
+                                        ]);?> -->
+                                    </div>
                                     <?php echo $this->Form->error("Admin.birthday"); ?>
                                                            </div>
                         </div>
                     </td>
                 </tr>
                                                                                 <tr>
-                    <th colspan="3" class="align-middle"><?php echo __('Body') ?><span class="require"></span></th>
-                    <td colspan="9">
-                        <div class="row  ">
+                    <th colspan="3" class="align-middle"><?php echo __('Comment') ?><span class="require"></span></th>
+                    <td colspan="9" >
+                        <div class=" ">
                                                     <div class="col-xs-12 ">
-                                                                                                       <?php echo $this->Form->input("Admin.body", [
-                                        'type' => 'text',
+                                                                                                       <?php echo $this->Form->input("Admin.comment", [
+                                        'type' => 'textarea', 
                                         'class' => 'form-control', 
                                         'label' => false, 
                                         'required' => false, 
-                                        'div' => false,
+                                        'rows' => '2', 
                                     ]); ?>                                                           </div>
                         </div>
                     </td>
                 </tr>
-                                                                                                                                <tr>
-                    <th colspan="3" class="align-middle"><?php echo __('Modified') ?><span class="require"></span></th>
-                    <td colspan="9">
-                        <div class="row  col-xs-12">
-                                                    <div class="col-xs-12 ">
-                                                                   <div class="input-group date datetimepicker">
-                                                                                <?php echo $this->Form->input("Admin.modified", [
-                                            'class' => 'form-control', 
-                                            'error' => false, 
-                                            'type' => 'text', 
-                                            'div' => false, 
-                                            'label' => false, 
-                                            'required' => false, 
-                                            'readonly' => false, 
-                                            'after' => '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
-                                        ]);?>                                    </div>
-                                    <?php echo $this->Form->error("Admin.modified"); ?>
+                                                                                                                                                                                <tr>
+                    <th colspan="3" class="align-middle"><?php echo __('Shop Id') ?><span class="require"></span></th>
+                    <td colspan="9" >
+                        <div class=" ">
+                                                    <div class="col-xs-12 form-inline">
+                                                                                                                                 <?php echo $this->Form->input("Admin.shop_id", array(
+                                    'type' => 'select', 
+                                    'class' => 'form-control', 
+                                    'label' => false, 
+                                    'required' => false, 
+                                    'options' => $shops, 
+                                    'empty' => '▼選択',
+                                ));?>                                                           </div>
+                        </div>
+                    </td>
+                </tr>
+                                                                                <tr>
+                    <th colspan="3" class="align-middle"><?php echo __('Emplyment Type') ?><span class="require"></span></th>
+                    <td colspan="9" >
+                        <div class=" ">
+                                                    <div class="col-xs-12 form-inline">
+                                                                                                   <?php echo $this->Form->input("Admin.emplyment_type", [
+                                    'type'      => 'radio',
+                                    'class'     => 'form-control', 
+                                    'required'    => false,
+                                    'legend'    => false,
+                                    'options'   => $emplyment_type,
+                                ]);
+                                debug(emplyment_type);
+                                ?> 
                                                            </div>
                         </div>
                     </td>
                 </tr>
-                                                                                                                                <tr>
-                    <th colspan="3" class="align-middle"><?php echo __('Deleted Time') ?><span class="require"></span></th>
+                                                                                <tr>
+                    <th colspan="3"><?php echo __('Paymenttype') ?></th>
                     <td colspan="9">
-                        <div class="row  col-xs-12">
-                                                    <div class="col-xs-12 ">
-                                                                   <div class="input-group date datetimepicker">
-                                                                                <?php echo $this->Form->input("Admin.deleted_time", [
-                                            'class' => 'form-control', 
-                                            'error' => false, 
-                                            'type' => 'text', 
-                                            'div' => false, 
-                                            'label' => false, 
-                                            'required' => false, 
-                                            'readonly' => false, 
-                                            'after' => '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
-                                        ]);?>                                    </div>
-                                    <?php echo $this->Form->error("Admin.deleted_time"); ?>
-                                                           </div>
-                        </div>
+                            <div class="col-xs-12">
+                                <div class="form-inline">
+                                <?php echo $this->Form->input("Admin.Paymenttype", 
+                                    array(
+                                        'type'     => 'select',
+                                        'multiple' => 'checkbox',
+                                        'label'    => false,
+                                        'error'    => false,
+                                    )
+                                ); 
+                                ?>
+                                </div>
+                            </div>
                     </td>
                 </tr>
-                                                            </table>
+                                            </table>
             <div class="form-group text-center action-btns">
-                                <?php echo $this->Form->submit(__('Update'), array('class' => 'btn btn-success btn-md', 'div' => false)); ?>
+                                <?php echo $this->Form->submit(__('Update'), array('class' => 'btn btn-success btn-md', 'div' => false , 'id' => 'submit')); ?>
                             </div>
             <?php echo $this->Form->end() ?>
         </div>

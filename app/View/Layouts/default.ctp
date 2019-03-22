@@ -15,7 +15,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
 	</title>
+	<script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->fetch('meta');
@@ -27,13 +34,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<nav class="navbar navbar-dark bg-dark">
+		<div id="header" class="navbar border-bottom bg-white">
 			  <a class="navbar-brand" href="#">Navbar</a>
-			</nav>
 		</div>
 		<div id="content">
-
 			<?php echo $this->Session->flash(); ?>
 			<div class="d-flex">
 				<nav class="col-md-2 d-none d-md-block bg-light sidebar border-right">
@@ -44,20 +48,143 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			    </div>
 			</nav>
 
-			<?php echo $this->fetch('content'); ?>
+			<div class="col-md-10 bg-light pt-3 pb-4">
+				<?php echo $this->fetch('content'); ?>
+			</div>
 			</div>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'https://cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	    <div id="root"></div>
+	    <script type="text/babel">
+	const {
+	  Button,
+	  colors,
+	  createMuiTheme,
+	  CssBaseline,
+	  Icon,
+	  MuiThemeProvider,
+	  Typography,
+	  withStyles,
+	  FormControl,
+	  MenuItem,
+	  TextField,
+	  Select,
+	  NativeSelect,
+	  InputBase,
+	} = window['material-ui'];
+	const theme = createMuiTheme({
+	  palette: {
+	    primary: {
+	      light: colors.red[300],
+	      main: colors.red[500],
+	      dark: colors.red[700],
+	    },
+	    secondary: {
+	      light: colors.green[300],
+	      main: colors.green[500],
+	      dark: colors.green[700],
+	    },
+	  },
+	  typography: {
+	    useNextVariants: true,
+	  },
+	});
+	const styles = theme => ({
+	  container: {
+	    display: 'flex',
+	    flexWrap: 'wrap',
+	  },
+	  textField: {
+	    marginLeft: theme.spacing.unit,
+	    marginRight: theme.spacing.unit,
+	    width: 200,
+	  },
+	});
+	class DatePicker extends React.Component {
+	  render() {
+	    const { classes } = this.props;
+	    return (
+	        <MuiThemeProvider theme={theme}>
+	            <CssBaseline />
+	                  <TextField
+	                          id="date"
+	                          label=""
+	                          type="date"
+	                          defaultValue=""
+	                          className={classes.textField}
+	                          InputLabelProps={{
+	                            shrink: true,
+	                          }}
+	                  />
+	        </MuiThemeProvider>
+	      );
+	  }
+	}
+	class TextArea extends React.Component {
+	  render() {
+	    const { classes } = this.props;
+	    return (
+	        <MuiThemeProvider theme={theme}>
+	            <CssBaseline />
+	                  <TextField
+	                            id="outlined-full-width"
+	                            style={{ margin: 0 }}
+	                            placeholder="メモ"
+	                            multiline
+	                            fullWidth
+	                            margin="normal"
+	                            variant="outlined"
+	                            InputLabelProps={{
+	                              shrink: true,
+	                            }}
+	                   />
+	        </MuiThemeProvider>
+	      );
+	  }
+	}
+	const BootstrapInput = withStyles(theme => ({
+	  root: {
+	    'label + &': {
+	      marginTop: theme.spacing.unit * 3,
+	    },
+	  },
+	  input: {
+	    borderRadius: 4,
+	    position: 'relative',
+	    backgroundColor: theme.palette.background.paper,
+	    border: '1px solid #ced4da',
+	    fontSize: 16,
+	    width: 'auto',
+	    padding: '10px 26px 10px 12px',
+	    transition: theme.transitions.create(['border-color', 'box-shadow']),
+	    // Use the system font instead of the default Roboto font.
+	    fontFamily: [
+	      '-apple-system',
+	      'BlinkMacSystemFont',
+	      '"Segoe UI"',
+	      'Roboto',
+	      '"Helvetica Neue"',
+	      'Arial',
+	      'sans-serif',
+	      '"Apple Color Emoji"',
+	      '"Segoe UI Emoji"',
+	      '"Segoe UI Symbol"',
+	    ].join(','),
+	    '&:focus': {
+	      borderRadius: 4,
+	      borderColor: '#80bdff',
+	      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+	    },
+	  },
+	}))(InputBase);
+
+	const Date = withStyles(styles)(DatePicker);
+	const Textfield = withStyles(styles)(TextArea);
+	ReactDOM.render(<Date />, document.getElementById('date'));
+	ReactDOM.render(<Textfield />, document.getElementsByClassName('textarea')[0]);
+	    </script>
 </body>
 </html>

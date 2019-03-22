@@ -1,5 +1,5 @@
-<div class="<?php echo $pluralVar; ?> form  col-md-10 bg-light">
-<ol class="breadcrumb bg-white">
+<div class="<?php echo $pluralVar; ?> form">
+<!-- <ol class="breadcrumb">
         <li><?php echo "<?php echo \$this->Html->link(__('Home'), array('controller' => 'pages', 'action' => 'display'), array('escape' => false)); ?>"; ?></li>
         <li><?php echo "<?php echo \$this->Html->link(__('{$singularHumanName}'), array('action' => 'index'), array('escape' => false)); ?>" ?></li>
         <?php if (strpos($action, 'add') === false): ?>
@@ -7,7 +7,7 @@
         <?php else: ?>
         <li class="active"><?php echo "<?php echo __('Add'); ?>"; ?></li>
         <?php endif; ?>
-    </ol>
+    </ol> -->
     <div class="row">
 <!--         <div class="form-group">
             <div class="col-md-12 text-right action-btns">
@@ -22,12 +22,16 @@
                 <?php echo "<?php echo \$this->Form->hidden(\"{$modelClass}.id\", array('class' => 'form-control', 'label' => false, 'required' => false));?>\n"; ?>
                 <?php endif; ?>
                 <?php foreach ($fields as $field): ?>
-                <?php $isDateField = isset($schema[$field]['type']) && $schema[$field]['type'] == 'datetime';?>
+                <?php
+                    $isDateField = isset($schema[$field]['type']) && $schema[$field]['type'] == 'datetime';
+                    $isName      = isset($schema[$field]['type']) && $schema[$field]['type'] == 'name';
+                    $isText      = isset($schema[$field]['type']) && $schema[$field]['type'] == 'text';
+                ?>
                 <?php if (!in_array($field, array('created', 'updated', 'deleted', 'id', 'photo_dir'))): ?>
                 <tr>
                     <th colspan="3" class="align-middle"><?php echo "<?php echo __('" .Inflector::humanize($field). "') ?>"; ?><span class="require"></span></th>
-                    <td colspan="9">
-                        <div class="row <?php echo $field == 'photo' ? 'photo-column' : ''; ?> <?php echo $isDateField ? 'col-xs-12' : ''; ?>">
+                    <td colspan="9" >
+                        <div class="<?php echo $field == 'photo' ? 'photo-column' : ''; ?> <?php echo $isDateField ? 'col-xs-12' : ''; ?>">
                         <?php $formInline = strpos($field, '_id') > 0 || strpos($field, '_type'); ?>
                             <div class="col-xs-12 <?php if ($formInline)echo 'form-inline'; ?>">
                                <?php if (strpos($field, '_id')): ?>
@@ -51,7 +55,8 @@ PHP
                                     'required'    => false,
                                     'legend'    => false,
                                     'options'   => \${$field},
-                                ]); ?>
+                                ]);
+                                ?>
 PHP
 ; ?> 
                                <?php elseif (strpos($field, '_flg')): ?>
@@ -65,8 +70,8 @@ PHP
 PHP
 ; ?>
                                <?php elseif ($isDateField): ?>
-                                    <div class="input-group date datetimepicker">
-                                        <?php echo <<<PHP
+                                    <div id="date" class="input-group">
+                                        <!-- <?php echo <<<PHP
                                         <?php echo \$this->Form->input("{$modelClass}.{$field}", [
                                             'class' => 'form-control', 
                                             'error' => false, 
@@ -78,7 +83,7 @@ PHP
                                             'after' => '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
                                         ]);?>
 PHP
-; ?>
+; ?> -->
                                     </div>
                                     <?php echo "<?php echo \$this->Form->error(\"{$modelClass}.{$field}\"); ?>\n"; ?>
                                <?php elseif ($field == 'birthday'): ?>
@@ -144,9 +149,8 @@ PHP
                 <?php if (!empty($associations['hasAndBelongsToMany'])): ?>
                 <?php foreach ($associations['hasAndBelongsToMany'] as $assocName => $assocData): ?>
                 <tr>
-                    <th><?php echo "<?php echo __('" .$assocName. "') ?>"; ?></th>
-                    <td>
-                        <div class="row">
+                    <th colspan="3"><?php echo "<?php echo __('" .$assocName. "') ?>"; ?></th>
+                    <td colspan="9">
                             <div class="col-xs-12">
                                 <div class="form-inline">
                                 <?php echo "<?php echo \$this->Form->input(\"{$modelClass}.{$assocName}\","; ?> 
@@ -160,7 +164,6 @@ PHP
                                 ?>
                                 </div>
                             </div>
-                        </div>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -168,9 +171,9 @@ PHP
             </table>
             <div class="form-group text-center action-btns">
                 <?php if (strpos($action, 'add') === false): ?>
-                <?php echo "<?php echo \$this->Form->submit(__('Update'), array('class' => 'btn btn-success btn-md', 'div' => false)); ?>\n"; ?>
+                <?php echo "<?php echo \$this->Form->submit(__('Update'), array('class' => 'btn btn-success btn-md', 'div' => false , 'id' => 'submit')); ?>\n"; ?>
                 <?php else: ?>
-                <?php echo "<?php echo \$this->Form->submit(__('Create'), array('class' => 'btn btn-primary btn-md', 'div' => false)); ?>\n"; ?>
+                <?php echo "<?php echo \$this->Form->submit(__('Create'), array('class' => 'btn btn-primary btn-md', 'div' => false , 'id' => 'submit')); ?>\n"; ?>
                 <?php endif; ?>
             </div>
             <?php echo "<?php echo \$this->Form->end() ?>\n"; ?>

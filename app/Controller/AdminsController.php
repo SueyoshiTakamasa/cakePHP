@@ -51,6 +51,9 @@ public function beforeFilter() {
                 $this->Session->setFlash(__('could not be created. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
             }
         }
+        $shops = $this->Admin->Shop->find('list', array('conditions' => array('deleted' => 0), 'recursive' => -1));
+        $paymenttypes = $this->Admin->Paymenttype->find('list', array('conditions' => array('deleted' => 0), 'recursive' => -1));
+$this->set(compact('shops', 'paymenttypes'));
         $this->set('title_for_layout', __('Admin') . __('Add'));
     }
 
@@ -69,6 +72,9 @@ public function beforeFilter() {
             $options = array('conditions' => array('Admin.id' => $id, 'Admin.deleted' => 0));
             $this->request->data = $this->Admin->find('first', $options);
         }
+        $shops = $this->Admin->Shop->find('list', array('conditions' => array('deleted' => 0), 'recursive' => -1));
+        $paymenttypes = $this->Admin->Paymenttype->find('list', array('conditions' => array('deleted' => 0), 'recursive' => -1));
+$this->set(compact('shops', 'paymenttypes'));
          $this->set('title_for_layout', __('Admin') . __('Edit'));
     }
 
