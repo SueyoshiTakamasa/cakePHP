@@ -18,6 +18,8 @@ class AdminFixture extends CakeTestFixture {
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'updated' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'shop_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'deleted' => array('type' => 'integer', 'null' => true, 'default' => '0', 'length' => 1, 'unsigned' => false),
+		'employment_type' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
@@ -34,11 +36,13 @@ class AdminFixture extends CakeTestFixture {
 			'id' => 1,
 			'name' => 'Lorem ipsum dolor sit amet',
 			'photo' => 'Lorem ipsum dolor sit amet',
-			'birthday' => '2019-03-22 18:42:57',
+			'birthday' => '2019-03-25 13:09:34',
 			'comment' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-			'created' => '2019-03-22 18:42:57',
-			'updated' => '2019-03-22 18:42:57',
-			'shop_id' => 1
+			'created' => '2019-03-25 13:09:34',
+			'updated' => '2019-03-25 13:09:34',
+			'shop_id' => 1,
+			'deleted' => 1,
+			'employment_type' => 1
 		),
 	);
 

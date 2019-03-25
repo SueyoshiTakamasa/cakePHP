@@ -39,9 +39,9 @@
                     <th><?php echo __('Shop Id'); ?></th>
                                         <td><?php echo h($admin['Shop']['name']); ?>&nbsp;</td>
                                     </tr>
-                                                                <tr>
-                    <th><?php echo __('Emplyment Type'); ?></th>
-                                        <td><?php echo h($emplyment_type[$admin['Admin']['emplyment_type']]); ?>&nbsp;</td>
+                                                                                                <tr>
+                    <th><?php echo __('Employment Type'); ?></th>
+                                        <td><?php echo h($employment_type[$admin['Admin']['employment_type']]); ?>&nbsp;</td>
                                     </tr>
                                                                                 <tr>
                     <th><?php echo __('Paymenttype') ?></th>

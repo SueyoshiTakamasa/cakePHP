@@ -43,7 +43,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<nav class="col-md-2 d-none d-md-block bg-light sidebar border-right">
 			    <div class="sidebar-sticky">
 			        <ul>
-			            <li></li>
 			        </ul>
 			    </div>
 			</nav>

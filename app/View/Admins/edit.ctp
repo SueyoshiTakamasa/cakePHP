@@ -109,19 +109,18 @@
                         </div>
                     </td>
                 </tr>
-                                                                                <tr>
-                    <th colspan="3" class="align-middle"><?php echo __('Emplyment Type') ?><span class="require"></span></th>
+                                                                                                                                <tr>
+                    <th colspan="3" class="align-middle"><?php echo __('Employment Type') ?><span class="require"></span></th>
                     <td colspan="9" >
                         <div class=" ">
                                                     <div class="col-xs-12 form-inline">
-                                                                                                   <?php echo $this->Form->input("Admin.emplyment_type", [
+                                                                                                   <?php echo $this->Form->input("Admin.employment_type", [
                                     'type'      => 'radio',
                                     'class'     => 'form-control', 
                                     'required'    => false,
                                     'legend'    => false,
-                                    'options'   => $emplyment_type,
+                                    'options'   => $employment_type,
                                 ]);
-                                debug(emplyment_type);
                                 ?> 
                                                            </div>
                         </div>
