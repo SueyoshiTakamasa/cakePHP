@@ -57,7 +57,7 @@
 			echo '<div class="d-flex flex-wrap mt-4">';
 			for($i = 0; $i < count($attachment); $i++){
 				if(!$attachment[$i]['deleted'] && !empty($attachment[$i]['photo'])){
-					echo '<div class="w-50 to-modal" data-toggle="modal" data-target="#ModalCenter" data-id=';
+					echo '<div class="m-1 to-modal" data-toggle="modal" style="width:24%;" data-target="#ModalCenter" data-id=';
 					echo '"image'.$attachment[$i]['photo_dir'].'">';
 					echo $this->Html->image('/images/get/'.'attachment/photo/'.$attachment[$i]['photo_dir'].DS.$attachment[$i]['photo'],
 						array(
