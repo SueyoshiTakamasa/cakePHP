@@ -56,17 +56,24 @@ class PostsController extends AppController {
             throw new NotFoundException(__('Invalid post'));
         }
 
-        $post = $this->Post->findById($id);
+        //該当するIDの記事情報を取得
+        $post = $this->Post->find('first',
+            array(
+                'conditions'=>array(
+                    'Post.deleted' => false,
+                    'Post.id'      => $id,
+                ),
+            ));
+
         if (!$post) {
             throw new NotFoundException(__('Invalid post'));
         }
 
         //表示させる記事のデータを変数に格納
-        $this->set('post',$post);
+        $this->set('post', $post);
 
-        //閲覧中のユーザーのID
-        $user = $this->Auth->user('id');
-        $this->set('user', $user);
+        //閲覧中のユーザー情報を変数に格納
+        $this->set('user', $this->Auth->user('id'));
 
         //categoriesテーブルから種別テーブルリストを取得する
         $this->set('list',$this->Post->Category->find('list',array('fields'=>array('id','name'))));
@@ -107,7 +114,14 @@ class PostsController extends AppController {
             throw new NotFoundException(__('Invalid post'));
         }
 
-        $post = $this->Post->findById($id);
+        //該当するIDの記事情報を取得
+        $post = $this->Post->find('first',
+            array(
+                'conditions'=>array(
+                    'Post.deleted' => false,
+                    'Post.id'      => $id,
+                ),
+            ));
 
         if (!$post) {
             throw new NotFoundException(__('Invalid post'));
