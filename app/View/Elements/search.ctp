@@ -1,7 +1,7 @@
 <?php echo $this->Form->create('Post', array(
   'url'        => '/Posts/index',
   'novalidate' => true,
-  'class'      => 'd-none',
+  'class'      => 'w-75 mr-auto',
   'id'         => 'searchBox',
 ))?>
 <div class="d-flex align-items-end mb-4">
@@ -13,7 +13,7 @@
         'div' => false,
         'label' => false,
         'required'   => false,
-        'class' => 'form-control rounded-0 rounded-left',
+        'class' => 'form-control form-control-sm rounded-0 rounded-left',
         ))?>
     </div>
 
@@ -25,7 +25,7 @@
         'options'      =>$list,
         'label'        => '',
         'div'          => false,
-        'class'        => 'form-control rounded-0',
+        'class'        => 'form-control form-control-sm rounded-0',
       ))
         ?>
     </div>
@@ -34,7 +34,7 @@
    <div class="form-group mb-0">
         <label class="mb-0 font-weight-bold" style="font-size:12px;">タグ</label>
         <div class="dropdown w-25 rounded-0">
-          <button class="btn bg-white border dropdown-toggle d-block px-2 rounded-0" id="dropdownMenuButton" data-toggle="dropdown" type="button">
+          <button class="btn btn-sm bg-white border dropdown-toggle d-block px-2 rounded-0" id="dropdownMenuButton" data-toggle="dropdown" type="button">
               タグを表示する
               <span class="caret"></span>
           </button>
@@ -61,7 +61,7 @@
     <?php echo $this->Form->submit('絞り込む', array(
        'div'    => false,
        'escape' => false,
-       'class'  => 'btn btn-fb--green mt-2 pl-4 pr-4 h-25 rounded-0 rounded-right',
+       'class'  => 'btn btn-sm btn-fb--green mt-2 pl-4 pr-4 h-25 rounded-0 rounded-right',
      ))?>
 </div>
 

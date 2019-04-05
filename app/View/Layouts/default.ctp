@@ -40,83 +40,65 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </head>
 <body>
 	<div id="container" class="bg-light">
-		<div id="header" class="navbar navbar-dark bg-fb-blue justify-content-start">
-			<h3 class="navbar-brand"><?php echo $this->Html->link('CakePHPでブログを作る',
-				array(
-					'controller' => 'posts',
-					'action'     => 'index',
-				),
-				array(
-					'class'      => 'text-white mr-auto'
-				)
-			); ?>
-			</h3>
-			<!-- ログインもしくはログアウト -->
-			<?php
-			if($login) {
-				echo $this->Html->link('ログアウト', array(
-				'controller' => 'users',
-				'action'     => 'logout',
-				),array(
-				    'class' => 'btn text-white ml-auto',
-				));
+		<header>
+			<div id="header" class="bg-fb-blue d-flex align-items-center py-1 px-2">
+				<?php echo $this->Html->link('CakePHPでブログを作る',
+					array(
+						'controller' => 'posts',
+						'action'     => 'index',
+					),
+					array(
+						'class'      => 'text-white mr-auto d-block'
+					)
+				); ?>
+				<!-- ログインもしくはログアウト -->
+				<div class="d-flex align-items-center">
+					<?php
+					if($login) {
+						echo $this->Html->link('ログアウト', array(
+						'controller' => 'users',
+						'action'     => 'logout',
+						),array(
+						    'class' => 'btn text-white ml-auto fz-14',
+						));
 
-				if($url == '/' || preg_match('/posts/',$url)){
-					echo '<div class="btn text-white cur-po" id="toSearch">検索する</div>';
-				}
+						if($url == '/' || preg_match('/posts/',$url)){
+							echo '<div class="btn text-white cur-po" id="toSearch">検索する</div>';
+						}
 
+					} else {
+						echo $this->Html->link('ユーザー登録', array(
+						'controller' => 'users',
+						'action'     => 'add',
+						),array(
+						    'class' => 'btn text-white ml-auto fz-14',
+						));
 
-				//記事を追加するページに遷移するボタン
-				echo $this->Html->link('記事を追加する', array(
-							'controller' => 'posts',
-							'action'     => 'add',
-							),array(
-							    'class' => 'btn btn-fb',
-							    'target' => '_blank'
-				));
-			} else {
-				echo $this->Html->link('新規登録', array(
-				'controller' => 'users',
-				'action'     => 'add',
-				),array(
-				    'class' => 'btn text-white ml-auto',
-				));
+						echo $this->Html->link('ログイン', array(
+						'controller' => 'users',
+						'action'     => 'login',
+						),array(
+						    'class' => 'btn text-white fz-14',
+						));
 
-				echo $this->Html->link('ログイン', array(
-				'controller' => 'users',
-				'action'     => 'login',
-				),array(
-				    'class' => 'btn text-white',
-				));
+					}
+					?>
+				</div>
 
-				if($url == '/' || preg_match('/Posts/',$url)){
-					echo '<div class="btn text-white cur-po" id="toSearch">検索する</div>';
-				}
-
-
-				//記事を追加するページに遷移するボタン
-				echo $this->Html->link('記事を追加する', array(
-							'controller' => 'posts',
-							'action'     => 'add',
-							),array(
-							    'class' => 'btn btn-fb',
-							    'target' => '_blank'
-				));
-			}
-			?>
-
-		</div>
+			</div>
+		</header>
 
 		<div id="content" class="pb-5">
 
 			<?php echo $this->Flash->render(); ?>
 
-			<div class="container pt-4">
+			<div class="bg-white py-1">
+				<div class="container">
 				<!-- パンくずリスト -->
 				<?php if($url != '/users/login'){
-					echo '<nav aria-label="breadcrumb mb-4">';
-					echo '<ol class="breadcrumb">';
-					echo '<li class="breadcrumb-item">';
+					echo '<nav aria-label="breadcrumb">';
+					echo '<ol class="breadcrumb mb-0">';
+					echo '<li class="breadcrumb-item mb-0">';
 					echo $this->Html->link(
 				                'ホーム',
 				                array(
@@ -131,10 +113,31 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				    // echo $this->Html->getCrumbs();
 				    echo '</nav>';
 				} ?>
+				</div>
+			</div>
+
+			<div class="container">
+
+				<div class="d-flex align-items-center pr-2 mt-3 mb-4">
+					<!-- 検索ボックス -->
+					<?php echo $this->element('search');?>
+
+					<?php
+						// if($url == '/' || preg_match('/Posts/',$url)){
+						// 	echo '<div class="btn cur-po fz-14" id="toSearch">検索する</div>';
+						// }
 
 
-				<!-- 検索ボックス -->
-				<?php echo $this->element('search');?>
+						//記事を追加するページに遷移するボタン
+						echo $this->Html->link('記事を追加する', array(
+									'controller' => 'posts',
+									'action'     => 'add',
+									),array(
+									    'class' => 'btn btn-fb fz-14 px-5',
+									    'target' => '_blank'
+						));
+					 ?>
+				</div>
 			</div>
 
 

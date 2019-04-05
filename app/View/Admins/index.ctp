@@ -1,66 +1,71 @@
 <div class="container">
 
-<div class="post-list d-flex flex-wrap">
-
+<table class="table table-bordered">
+    <thead>
+        <tr class="fz-14">
+            <th>タイトル</th>
+            <th>作成日</th>
+            <th>カテゴリー</th>
+            <th>タグ</th>
+        </tr>
+    </thead>
 
 <!-- ここで $posts 配列をループして、投稿情報を表示 -->
-
+<tbody>
     <?php foreach ($posts as $key => $post): ?>
-        <div class="card m-1 shadow-sm" style="box-sizing:border-box; width:24.2%;">
-
-            <!-- 画像 -->
-            <?php echo '<img src="' ?>
-            <?php
-                        echo 'https://picsum.photos/300/200?random&dammy='.$key;
-             ?>
-             <?php echo '"alt="" class="card-img-top" >' ?>
+        <tr class="">
 
 
-            <div class="card-body">
             <!-- タイトル -->
-            <h5 class="text-truncate font-weight-bold card-title">
-            <?php
-                echo $this->Html->link(
-                    $post['Post']['title'],
-                    array(
-                        'action' => 'view', $post['Post']['id']
-                    ),
-                    array(
-                        'class'  => 'stretched-link card-title',
-                    )
-                );
-            ?>
-            </h5>
-
-            <!-- カテゴリー -->
-            <!-- <span class="d-block">
-                <?php echo h($post['Category']['name']); ?>
-            </span> -->
+            <td>
+                <h5 class="text-truncate font-weight-bold">
+                <?php
+                    echo $this->Html->link(
+                        $post['Post']['title'],
+                        array(
+                            'action' => 'view', $post['Post']['id']
+                        ),
+                        array(
+                            'class'  => 'stretched-link fz-14',
+                        )
+                    );
+                ?>
+                </h5>
+            </td>
 
             <!-- 日にち -->
-            <span class="d-block text-muted">
-                <i class="far fa-calendar-alt"></i>
-                <?php
-                    $explode = explode(" ", $post['Post']['created']);
-                    $split   = split("-", $explode[0]);
-                    $year    = $split[0];
-                    $month   = $split[1];
-                    $day    = $split[2];
-                ?>
-                <?php echo $year; ?>年
-                <?php echo $month; ?>月
-                <?php echo $day; ?>日
-            </span>
+            <td>
+                <span class="d-block text-muted fz-14">
+                    <?php
+                        $explode = explode(" ", $post['Post']['created']);
+                        $split   = split("-", $explode[0]);
+                        $year    = $split[0];
+                        $month   = $split[1];
+                        $day    = $split[2];
+                    ?>
+                    <?php echo $year; ?>年
+                    <?php echo $month; ?>月
+                    <?php echo $day; ?>日
+                </span>
+            </td>
+
+            <!-- カテゴリー -->
+            <td>
+                <span class="d-block fz-14">
+                    <?php echo h($post['Category']['name']); ?>
+                </span>
+            </td>
 
             <!-- タグ -->
-            <span class="d-block">
-                <i class="fas fa-tag text-muted"></i>
-                <?php foreach ($post['Tag'] as $tag): ?>
-                    <span class="badge badge-secondary">
-                        <?php echo h($tag['name']."\n"); ?>
-                    </span>
-                <?php endforeach; ?>
-            </span>
+            <td>
+                <span class="d-block fz-14">
+                    <?php foreach ($post['Tag'] as $tag): ?>
+                        <span class="badge badge-secondary">
+                            <?php echo h($tag['name']."\n"); ?>
+                        </span>
+                    <?php endforeach; ?>
+                </span>
+            </td>
 
         <!-- <td>
             <?php
@@ -93,11 +98,11 @@
                 );
                 ?>
         </td> -->
-            </div>
-        </div>
+        </tr>
     <?php endforeach; ?>
+</tbody>
 
-</div>
+</table>
 
     <nav class="mt-4 d-block">
         <ul class="pagination justify-content-center">

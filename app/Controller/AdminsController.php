@@ -1,7 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 
-class PostsController extends AppController {
+class AdminsController extends AppController {
     public $helpers = array('Html', 'Form', 'Flash');
     public $components = array('Flash','Search.Prg');
     public $uses = array('Post','User','Attachment','Tag','PostsTag','Category');
