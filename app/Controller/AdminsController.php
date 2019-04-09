@@ -41,6 +41,8 @@ class AdminsController extends AppController {
         //tagsテーブルからリストを取得する
         $this->set('tag',$this->Post->Tag->find('list'));
 
+        //usersテーブルからリストを取得する
+        $this->set('user',$this->Post->User->find('list'));
     }
 
     //

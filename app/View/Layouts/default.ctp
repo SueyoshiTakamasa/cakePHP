@@ -39,7 +39,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	?>
 </head>
 <body>
-	<div id="container" class="bg-light">
+	<div id="container" class="">
 		<header>
 			<div id="header" class="bg-fb-blue d-flex align-items-center py-1 px-2">
 				<?php echo $this->Html->link('CakePHPでブログを作る',
@@ -88,59 +88,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</div>
 		</header>
 
-		<div id="content" class="pb-5">
-
-			<?php echo $this->Flash->render(); ?>
-
-			<div class="bg-white py-1">
-				<div class="container">
-				<!-- パンくずリスト -->
-				<?php if($url != '/users/login'){
-					echo '<nav aria-label="breadcrumb">';
-					echo '<ol class="breadcrumb mb-0">';
-					echo '<li class="breadcrumb-item mb-0">';
-					echo $this->Html->link(
-				                'ホーム',
-				                array(
-				                    'action'  => 'index'
-				                ),
-				                array(
-				                    'class'   => 'active'
-				                )
-				    );
-				    echo '</li>';
-				    echo '</ol>';
-				    // echo $this->Html->getCrumbs();
-				    echo '</nav>';
-				} ?>
-				</div>
-			</div>
-
-			<div class="container">
-
-				<div class="d-flex align-items-center pr-2 mt-3 mb-4">
-					<!-- 検索ボックス -->
-					<?php echo $this->element('search');?>
-
-					<?php
-						// if($url == '/' || preg_match('/Posts/',$url)){
-						// 	echo '<div class="btn cur-po fz-14" id="toSearch">検索する</div>';
-						// }
-
-
-						//記事を追加するページに遷移するボタン
-						echo $this->Html->link('記事を追加する', array(
-									'controller' => 'posts',
-									'action'     => 'add',
-									),array(
-									    'class' => 'btn btn-fb fz-14 px-5',
-									    'target' => '_blank'
-						));
-					 ?>
-				</div>
-			</div>
-
-
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer" class="bg-fb p-4">
@@ -153,30 +100,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<p>
 				<?php echo $cakeVersion; ?>
 			</p> -->
-			<?php
-				echo $this->Html->link('タグ編集', array(
-				'controller' => 'tags',
-				'action'     => 'index',
-				),array(
-				    'class' => 'btn text-white ml-auto',
-				));
-			 ?>
-			 <?php
-				echo $this->Html->link('カテゴリー編集', array(
-				'controller' => 'categories',
-				'action'     => 'index',
-				),array(
-				    'class' => 'btn text-white ml-auto',
-				));
-			 ?>
-			 <?php
-				echo $this->Html->link('住所検索', array(
-				'controller' => 'zipcodes',
-				'action'     => 'index',
-				),array(
-				    'class' => 'btn text-white ml-auto',
-				));
-			 ?>
 			<span class="text-center text-white d-block">
 				&copy;クリエイター
 			</span>
