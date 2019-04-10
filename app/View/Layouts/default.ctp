@@ -87,7 +87,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 			</div>
 		</header>
-
+		<div>
+			<?php echo $this->element('breadcrumb'); ?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer" class="bg-fb p-4">
