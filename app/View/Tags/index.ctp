@@ -21,16 +21,19 @@
 		</div>
 		<!-- ここまで | タグを追加-->
 
-	<table class="table mt-4 bg-white">
-<!-- 		<tr class="">
-	        <th class="w-75">タグ名</th>
-	        <th></th>
-	    </tr> -->
+	<table class="table table-striped mt-4 bg-white">
+
+		<thead>
+		    <tr class="fz-14">
+		        <th>タグ名</th>
+		        <th></th>
+		    </tr>
+		</thead>
 
 		<?php foreach($tags as $tag): ?>
 		<tr>
-			<td class="fz-14"><?php echo h($tag['Tag']['name']); ?>&nbsp;</td>
-			<td class="text-right">
+			<td class="fz-14 align-middle py-1"><?php echo h($tag['Tag']['name']); ?>&nbsp;</td>
+			<td class="text-right align-middle py-1">
 				<span class=" fz-12 btn btn-light px-2 py-1 border">
 				    <?php
 				        echo $this->Html->link(

@@ -50,6 +50,9 @@ class AppController extends Controller {
         //ログインの有無を変数に格納
         $this->set('login',$this->isLogined());
 
+        //ログイン中のユーザー名を変数に格納
+        $this->set('auth', $this->Auth->user());
+
         $url = Router::url();
 
         $this->set('url', $url);

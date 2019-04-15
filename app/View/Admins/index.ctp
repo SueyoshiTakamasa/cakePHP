@@ -7,7 +7,7 @@
         <h4 class="border-bottom pt-1 pb-2">記事の管理</h4>
 
         <div class="mt-5">
-            <table class="table  bg-white">
+            <table class="table table-striped bg-white">
                 <thead>
                     <tr class="fz-14">
                         <th>タイトル</th>
@@ -26,8 +26,8 @@
 
 
                         <!-- タイトル -->
-                        <td>
-                            <h5 class="font-weight-bold fz-14">
+                        <td class="align-middle py-1">
+                            <h5 class="font-weight-bold fz-14 m-0">
                             <?php
                                 echo $this->Html->link(
                                     $post['Post']['title'],
@@ -44,7 +44,7 @@
                         </td>
 
                         <!-- タイトル -->
-                        <td>
+                        <td class="align-middle py-1">
                             <span class="d-block fz-12">
                                  <?php echo h($post['User']['username']); ?>
                             </span>
@@ -69,14 +69,14 @@
                         </td>
 
                         <!-- カテゴリー -->
-                        <td>
+                        <td class="align-middle py-1">
                             <span class="d-block fz-12">
                                 <?php echo h($post['Category']['name']); ?>
                             </span>
                         </td>
 
                         <!-- タグ -->
-                        <td>
+                        <td class="align-middle py-1">
                             <span class="d-block fz-14">
                                 <?php foreach ($post['Tag'] as $tag): ?>
                                     <span class="badge border">
@@ -86,7 +86,7 @@
                             </span>
                         </td>
 
-                        <td>
+                        <td class="align-middle py-1">
                             <span class=" fz-12 btn btn-light px-2 py-1 border">
                                 <?php
                                     echo $this->Html->link(

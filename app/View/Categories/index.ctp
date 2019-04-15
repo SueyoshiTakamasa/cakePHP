@@ -22,48 +22,53 @@
 		</div>
 		<!-- ここまで | タグを追加-->
 
-	<table class="table mt-4 bg-white">
-<!-- 		<tr class="">
-	        <th class="w-75">タグ名</th>
-	        <th></th>
-	    </tr> -->
+	<table class="table mt-4 bg-white table-striped">
 
-		<?php foreach($categories as $category): ?>
-		<tr>
-			<td class="fz-14"><?php echo h($category['Category']['name']); ?>&nbsp;</td>
-			<td class="text-right">
-				<span class=" fz-12 btn btn-light px-2 py-1 border">
-				    <?php
-				        echo $this->Html->link(
-				            '編集',
-				            array(
-				                'controller' => 'categories',
-				                'action' => 'edit',
-				                 $category['Category']['id']
-				            )
-				        );
-				    ?>
-				</span>
-				<span class=" fz-12 btn btn-light px-2 py-1 border">
-				    <?php
-				    echo $this->Form->postLink(
-				        '削除',
-				        array(
-				            'controller' => 'categories',
-				            'action'     => 'delete',
-				             $category['Category']['id']
-				         ),
-				        array(
-				            'confirm'    => ' この記事を削除してよろしいいですか？',
-				        )
-				    );
-				    ?>
-				</span>
-			</td>
-		</tr>
-		<?php endforeach; ?>
+		<thead>
+		    <tr class="fz-14">
+		        <th>カテゴリー名</th>
+		        <th></th>
+		    </tr>
+		</thead>
 
-		<?php unset($categories); ?>
+		<tbody>
+			<?php foreach($categories as $category): ?>
+			<tr>
+				<td class="fz-14 align-middle py-1"><?php echo h($category['Category']['name']); ?>&nbsp;</td>
+				<td class="text-right align-middle py-1">
+					<span class=" fz-12 btn btn-light px-2 py-1 border">
+					    <?php
+					        echo $this->Html->link(
+					            '編集',
+					            array(
+					                'controller' => 'categories',
+					                'action' => 'edit',
+					                 $category['Category']['id']
+					            )
+					        );
+					    ?>
+					</span>
+					<span class=" fz-12 btn btn-light px-2 py-1 border">
+					    <?php
+					    echo $this->Form->postLink(
+					        '削除',
+					        array(
+					            'controller' => 'categories',
+					            'action'     => 'delete',
+					             $category['Category']['id']
+					         ),
+					        array(
+					            'confirm'    => ' この記事を削除してよろしいいですか？',
+					        )
+					    );
+					    ?>
+					</span>
+				</td>
+			</tr>
+			<?php endforeach; ?>
+
+			<?php unset($categories); ?>
+		</tbody>
 	</table>
 
 </div>

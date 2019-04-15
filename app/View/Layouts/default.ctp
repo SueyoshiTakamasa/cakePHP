@@ -18,7 +18,7 @@ $cakeDescription = __d('cake_dev', 'CakePHPでブログを作る');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -41,51 +41,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container" class="">
 		<header>
-			<div id="header" class="bg-fb-blue d-flex align-items-center py-1 px-2">
-				<?php echo $this->Html->link('CakePHPでブログを作る',
-					array(
-						'controller' => 'posts',
-						'action'     => 'index',
-					),
-					array(
-						'class'      => 'text-white mr-auto d-block'
-					)
-				); ?>
-				<!-- ログインもしくはログアウト -->
-				<div class="d-flex align-items-center">
-					<?php
-					if($login) {
-						echo $this->Html->link('ログアウト', array(
-						'controller' => 'users',
-						'action'     => 'logout',
-						),array(
-						    'class' => 'btn text-white ml-auto fz-14',
-						));
-
-						if($url == '/' || preg_match('/posts/',$url)){
-							echo '<div class="btn text-white cur-po" id="toSearch">検索する</div>';
-						}
-
-					} else {
-						echo $this->Html->link('ユーザー登録', array(
-						'controller' => 'users',
-						'action'     => 'add',
-						),array(
-						    'class' => 'btn text-white ml-auto fz-14',
-						));
-
-						echo $this->Html->link('ログイン', array(
-						'controller' => 'users',
-						'action'     => 'login',
-						),array(
-						    'class' => 'btn text-white fz-14',
-						));
-
-					}
-					?>
-				</div>
-
-			</div>
+			<?php echo $this->element('header'); ?>
 		</header>
 		<div>
 			<?php echo $this->element('breadcrumb'); ?>
