@@ -1,11 +1,22 @@
 .f{
 	&z{
+
+		&-18{
+			font-size: 18px;
+		}
+
 		&-14{
 			font-size: 14px;
 		}
 
 		&-12{
 			font-size: 12px;
+		}
+	}
+
+	&f{
+		&-mincho{
+			font-family: 游明朝 medium, YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", HG明朝E, "ＭＳ Ｐ明朝", "ＭＳ 明朝", Verdana, Roboto, "Droid Sans", serif;
 		}
 	}
 }

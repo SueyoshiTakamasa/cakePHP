@@ -1,9 +1,9 @@
-<div class="px-2 py-2 bg-light">
+<div class="px-3 py-2">
     <!-- パンくずリスト -->
     <?php
         echo '<nav aria-label="breadcrumb" class="fz-12">';
         echo $this->Html->getCrumbs(' &rsaquo; ', array(
-                'text' => 'ホーム',
+                'text' => '<i class="fas fa-home text-secondary"></i>ホーム',
                 'url' => '/',
                 'escape' => false,
             ));

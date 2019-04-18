@@ -1,3 +1,3 @@
-$("#dropdownMenuButton").click(function(){
-	$('.dropdown-menu').toggleClass('d-none');
+$(".dropdownMenuButton").click(function(){
+	$(this).next('.dropdown-menu').slideDown('fast');
 })

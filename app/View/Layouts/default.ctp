@@ -26,6 +26,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php echo $this->fetch('title'); ?>
 	</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700" rel="stylesheet">
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -45,22 +46,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</header>
 		<div>
 			<?php echo $this->element('breadcrumb'); ?>
-			<?php echo $this->fetch('content'); ?>
+			<div class="py-4">
+				<?php echo $this->fetch('content'); ?>
+			</div>
 		</div>
-		<div id="footer" class="bg-fb p-4">
-<!-- 			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'https://cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p> -->
-			<span class="text-center text-white d-block">
-				&copy;クリエイター
-			</span>
-		</div>
+		<footer>
+			<?php echo $this->element('footer'); ?>
+		</footer>
 	</div>
 	<!-- <?php echo $this->element('sql_dump'); ?> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
