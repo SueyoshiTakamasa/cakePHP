@@ -1,10 +1,9 @@
 <div class="container">
 
 
-	<div class="d-flex align-items-center">
-		<h1 class="mr-auto"><?php echo h($post['Post']['title']); ?></h1>
+	<div class="">
+		<h1 class="mr-auto ff-mincho"><?php echo h($post['Post']['title']); ?></h1>
 		<span class="d-block text-muted">
-		    <i class="far fa-calendar-alt"></i>
 		    <?php
 		        $explode = explode(" ", $post['Post']['created']);
 		        $split   = split("-", $explode[0]);

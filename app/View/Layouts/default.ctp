@@ -46,7 +46,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</header>
 		<div>
 			<?php echo $this->element('breadcrumb'); ?>
-			<div class="py-4">
+			<div class="">
 				<?php echo $this->fetch('content'); ?>
 			</div>
 		</div>

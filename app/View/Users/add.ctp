@@ -1,10 +1,20 @@
 <?php
-	$this->Html->addCrumb('メンバー一覧', '/users');
-	$this->Html->addCrumb('メンバー登録', '');
+	if(!is_null($auth)) {
+		$this->Html->addCrumb('メンバー一覧', '/users');
+		$this->Html->addCrumb('メンバー登録', '');
+	} else{
+		$this->Html->addCrumb('メンバー登録', '');
+	}
 ?>
+
+
 <div class="row">
-    <?php echo $this->element('admins/navi'); ?>
-	<div class="col-sm-10 pt-2 pb-5 px-4" >
+    <?php
+	if(!is_null($auth)) {
+		echo $this->element('admins/navi');
+	}
+ ?>
+	<div class="col-sm-10 pt-2 pb-5 px-4 <?php if(is_null($auth)){echo 'container';} ?>" >
         <h4 class="border-bottom pt-1 pb-2">メンバー登録</h4>
 		<?php echo $this->Form->create('User'); ?>
 			<table class="table table-bordered mt-4 w-75">

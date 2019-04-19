@@ -1,28 +1,7 @@
+<?php $this->Html->addCrumb('記事の投稿', '/posts/add'); ?>
 <div class="container py-4">
 
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-			<?php
-				echo $this->Html->link(
-					'ホーム',
-					array(
-						'action'  => 'index'
-					),
-					array(
-						'class'   => 'text-primary'
-					)
-				)
-			?>
-			</li>
-			<li class="breadcrumb-item active" aria-current="page">
-				<!-- <?php echo $this->data['Post']['title'];  ?> -->
-				記事作成ページ
-			</li>
-		</ol>
-	</nav>
-
-	<h1>記事作成ページ</h1>
+	<h1 class="ff-mincho">記事の投稿</h1>
 
 	<?php
 		echo $this->Form->create('Post',array(
@@ -30,12 +9,12 @@
 		));
 	?>
 
-	<div class="form-group">
+	<div class="form-group mt-5">
 		<label class="mb-0 font-weight-bold">タイトル</label>
 		<?php
 			echo $this->Form->input('title',
 				array(
-					'class'   => 'form-control',
+					'class'   => 'form-control w-50',
 					'label'   => '',
 					'div'     => false,
 					'required'   => false,
@@ -44,14 +23,14 @@
 		?>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group mt-4">
 		<label class="mb-0 font-weight-bold">カテゴリー</label>
 		<?php
 			echo $this->Form->input('category_id',
 				array(
 					'type'     =>'select',
 					'options'  =>$list,
-					'class'   => 'form-control w-50',
+					'class'   => 'form-control w-25',
 					'label'   => '',
 					'div'     => false,
 				)
@@ -59,7 +38,7 @@
 		?>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group mt-4">
 		<label class="mb-0 font-weight-bold">タグ</label>
 		<div class="check-box d-flex bg-white p-2 border rounded">
 			<?php
@@ -76,7 +55,7 @@
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group mt-4">
 		<label class="mb-0 font-weight-bold">画像</label>
 		<div class=" bg-white p-2 border rounded input-files">
 			<div>
@@ -124,7 +103,7 @@
 	</div> -->
 
 
-	<div class="form-group mt-3">
+	<div class="form-group mt-4">
 		<label class="mb-0 font-weight-bold">本文</label>
 		<?php
 			echo $this->Form->input('body',

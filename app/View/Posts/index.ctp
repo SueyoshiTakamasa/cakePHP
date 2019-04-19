@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container py-5">
 
 <div class="post-list d-flex flex-wrap">
 
